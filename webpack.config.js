@@ -1,0 +1,59 @@
+var webpack = require('webpack');
+var path = require('path');
+
+console.log(path.resolve('dist'));
+
+module.exports = {
+  context: path.resolve('src'),
+  devtool: 'inline-sourcemap',
+  entry: './Router.js',
+  resolve: {
+    modulesDirectories: [
+      'node_modules',
+      'src',
+      'assets',
+    ],
+  },
+  devServer: {
+    inline: true,
+    port: 3333,
+  },
+  contentBase: path.resolve('dist'),
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015'],
+        }
+      },
+      {
+        test: /\.(png|jpeg|jpg|gif)$/,
+        exclude: /node_modules/,
+        loader: 'file-loader?name=img/img-[hash:6].[ext]',
+      },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: 'style!css!sass-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+      }
+    ]
+  },
+  output: {
+    path: path.resolve('dist'),
+    filename: 'bundle.min.js',
+    publicPath: '/dist/',
+  },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    //new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+  ]
+};

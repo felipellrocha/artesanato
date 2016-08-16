@@ -1,0 +1,39 @@
+:local(.component) {
+  & > .main {
+    display: flex;
+    justify-content: space-between;
+    background: #ff7575;
+    align-items: baseline;
+    padding: 0 20px;
+
+    & > .menu,
+    & > .logo {
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    & > .menu {
+      list-style: none;
+      display: flex;
+
+      & > li > a {
+        padding: 13px 20px;
+        color: #f8f7f7;
+
+        &:hover {
+          color: #000;
+          border-bottom: 3px solid #ff7575;
+        }
+      }
+    }
+  }
+
+  & > .bottom {
+    background: #5c4d4d;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+    font-size: 11px;
+    font-family: 'Raleway', sans-serif;
+  }
+}

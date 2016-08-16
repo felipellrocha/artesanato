@@ -1,0 +1,26 @@
+:local(.component) {
+  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 2px;
+
+  & > img {
+    width: 100%;
+    border-radius: 2px 2px 0 0 ;
+    box-shadow: 0 3px 0px rgba(0, 0, 0, .1);
+  }
+
+  & > .details {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: baseline;
+
+    & > h2 {
+      font-size: 18px;
+    }
+
+    & > p {
+      font-size: 14px;
+    }
+  }
+}

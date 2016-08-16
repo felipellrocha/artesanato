@@ -1,0 +1,28 @@
+:local(.component) {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  align-items: baseline;
+  padding: 0 20px;
+
+  & > .menu,
+  & > .logo {
+    color: #ff7575;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  & > .menu {
+    list-style: none;
+    display: flex;
+
+    & > li > a {
+      padding: 13px 20px;
+      color: #5c4d4d;
+
+      &:hover {
+        color: #000;
+        border-bottom: 3px solid #ff7575;
+      }
+    }
+  }
+}
