@@ -1,14 +1,31 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
-import Artwork from 'components/Artwork'
 
 import banner from 'images/caruaru.jpg'
 
 import styles from './index.css'
 
-class Home extends React.Component {
+import Artwork from 'components/Artwork'
+
+export default class Home extends React.Component {
   render() {
+    const data = [
+      {
+        title: 'Vasos simples',
+        screenshot: require('images/vases.jpg'),
+        price: {
+          value: 2.99,
+          currency: 'USD',
+        },
+      },
+      {
+        title: 'Vasos de areia',
+        screenshot: require('images/areias.jpg'),
+        price: {
+          value: 2.99,
+          currency: 'USD',
+        },
+      },
+    ]
     return (
       <div className={styles.component}>
         <div className='banner'>
@@ -23,7 +40,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div className='market'>
-          {this.props.data.map((datum, i) =>
+          {data.map((datum, i) =>
             <Artwork
               {...datum}
               key={i}
@@ -36,8 +53,3 @@ class Home extends React.Component {
   }
 };
 
-export default connect(state => {
-  return {
-    data: state.artwork,
-  }
-})(Home)
