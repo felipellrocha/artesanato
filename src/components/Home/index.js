@@ -7,8 +7,19 @@ import banner from 'images/caruaru.jpg'
 
 import styles from './index.css'
 
+import {
+  ArtworkMapSelector,
+  SingleArtworkSelector,
+} from 'selectors/artwork'
+
 class Home extends React.Component {
   render() {
+    const {
+      artworks,
+    } = this.props;
+
+    console.log(ArtworkMapSelector(artworks, (artwork, i) => console.log(artwork)));
+
     return (
       <div className={styles.component}>
         <div className='banner'>
@@ -23,12 +34,17 @@ class Home extends React.Component {
           </div>
         </div>
         <div className='market'>
-          {this.props.data.map((datum, i) =>
-            <Artwork
-              {...datum}
-              key={i}
-              className={styles.cardSpacing}
-            />)
+          {
+            ArtworkMapSelector(artworks).map((id, i) => {
+              const artwork = SingleArtworkSelector(artworks, id)
+              return (
+                <Artwork
+                  {...artwork}
+                  key={i}
+                  className={styles.cardSpacing}
+                />
+              )
+            })
           }
         </div>
       </div>
@@ -38,6 +54,6 @@ class Home extends React.Component {
 
 export default connect(state => {
   return {
-    data: state.artwork,
+    artworks: state.artwork,
   }
 })(Home)
