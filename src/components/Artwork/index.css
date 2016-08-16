@@ -15,7 +15,9 @@
     padding: 0 20px;
     align-items: baseline;
 
-    & > h2 {
+    & > h2 > a {
+      color: #000;
+      text-decoration: none;
       font-size: 18px;
     }
 

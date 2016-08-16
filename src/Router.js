@@ -13,7 +13,7 @@ render(
     <Router history={browserHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
-        <Route path='artwork/' component={SingleArtworkPage} />
+        <Route path='artwork/:artworkId' component={SingleArtworkPage} />
       </Route>
     </Router>
   </Provider>,

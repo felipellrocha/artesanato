@@ -1,55 +1,40 @@
 import React from 'react'
-
-import banner from 'images/caruaru.jpg'
+import { connect } from 'react-redux'
 
 import styles from './index.css'
 
 import Artwork from 'components/Artwork'
 
-export default class Home extends React.Component {
+import {
+  SingleArtworkSelector,
+} from 'selectors/artwork'
+
+export default class SingleArtworkPage extends React.Component {
   render() {
-    const data = [
-      {
-        title: 'Vasos simples',
-        screenshot: require('images/vases.jpg'),
-        price: {
-          value: 2.99,
-          currency: 'USD',
-        },
-      },
-      {
-        title: 'Vasos de areia',
-        screenshot: require('images/areias.jpg'),
-        price: {
-          value: 2.99,
-          currency: 'USD',
-        },
-      },
-    ]
+    const {
+      artworks,
+      params: {
+        artworkId,
+      }
+    } = this.props;
+
+    const artwork = SingleArtworkSelector(artworks, artworkId);
+
     return (
       <div className={styles.component}>
-        <div className='banner'>
-          <div className='message'>
-            <h3>Artesanato</h3> 
-            <p>facil, e barato</p>
-          </div>
-          <img src={banner} />
-          <div className='input'>
-            <input placeholder='O que voce esta procurando?' />
-            <a className='submit'>Procurar</a>
-          </div>
-        </div>
         <div className='market'>
-          {data.map((datum, i) =>
-            <Artwork
-              {...datum}
-              key={i}
-              className={styles.cardSpacing}
-            />)
-          }
+          <Artwork
+            {...artwork}
+          />)
         </div>
       </div>
     );
   }
 };
 
+
+export default connect(state => {
+  return {
+    artworks: state.artwork,
+  }
+})(SingleArtworkPage)
