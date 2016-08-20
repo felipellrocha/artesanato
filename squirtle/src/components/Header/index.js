@@ -1,14 +1,17 @@
 import React from 'react'
 
+import { Link } from 'react-router'
+import { HomeLink } from 'Links'
+
 import styles from './index.css'
 
 export default class Header extends React.Component {
   render() {
     return (
       <div className={styles.component}>
-        <div className='logo'>Artesanato</div>
+        <div className='logo'><Link to={HomeLink()}>Artesanato</Link></div>
         <ul className='menu'>
-          <li><a>Pagina Principal</a></li>
+          <li><Link to={HomeLink()}>Pagina Principal</Link></li>
           <li><a>Conta</a></li>
           <li><a>Artesão</a></li>
         </ul>

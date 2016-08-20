@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var express = require('express');
 
 console.log(path.resolve('dist'));
 
@@ -17,6 +18,15 @@ module.exports = {
   devServer: {
     inline: true,
     port: 3333,
+    proxy: {
+      '/data*': {
+        target: 'http://localhost:5000/',
+        secure: false,
+      }
+    },
+    setup: function(app) {
+      app.use(express.static('assets'))
+    },
   },
   contentBase: path.resolve('dist'),
   module: {

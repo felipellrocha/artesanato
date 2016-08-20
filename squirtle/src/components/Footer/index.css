@@ -7,9 +7,10 @@
     padding: 0 20px;
 
     & > .menu,
-    & > .logo {
+    & > .logo a {
       color: #fff;
       font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
     }
 
     & > .menu {
@@ -19,6 +20,7 @@
       & > li > a {
         padding: 13px 20px;
         color: #f8f7f7;
+        text-decoration: none;
 
         &:hover {
           color: #000;

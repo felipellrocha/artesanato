@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Artwork from 'components/Artwork'
+import { loadHomePage } from 'actions/products'
 
 import banner from 'images/caruaru.jpg'
 
@@ -13,12 +14,19 @@ import {
 } from 'selectors/artwork'
 
 class Home extends React.Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    dispatch(loadHomePage())
+  }
+
   render() {
     const {
       artworks,
     } = this.props;
 
-    console.log(ArtworkMapSelector(artworks, (artwork, i) => console.log(artwork)));
+    const products = ArtworkMapSelector(artworks);
 
     return (
       <div className={styles.component}>
@@ -35,7 +43,7 @@ class Home extends React.Component {
         </div>
         <div className='market'>
           {
-            ArtworkMapSelector(artworks).map((id, i) => {
+            products.map((id, i) => {
               const artwork = SingleArtworkSelector(artworks, id)
               return (
                 <Artwork

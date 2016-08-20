@@ -1,18 +1,18 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory, Router, Route, IndexRoute } from 'react-router'
+import { hashHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 
 import store from './store'
 import App from 'components/App'
-import Home from 'components/Home'
+import HomePage from 'components/HomePage'
 import SingleArtworkPage from 'components/SingleArtworkPage'
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route path='/' component={App}>
-        <IndexRoute component={Home} />
+        <IndexRoute component={HomePage} />
         <Route path='artwork/:artworkId' component={SingleArtworkPage} />
       </Route>
     </Router>

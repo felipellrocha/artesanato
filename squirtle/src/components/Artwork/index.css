@@ -4,18 +4,26 @@
   border-radius: 2px;
   width: 100%;
 
-  & > img {
+  & > .screenshot {
     width: 100%;
-    border-radius: 2px 2px 0 0 ;
+    height: 200px;
     box-shadow: 0 3px 0px rgba(0, 0, 0, .1);
-    max-height: 150px;
+    background: #5c4d4d;
+    border-radius: 2px 2px 0 0;
+    text-align: center;
+
+    & > a img {
+      height: 100%;
+      width: auto;
+    }
   }
 
   & > .details {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
-    align-items: baseline;
+    padding: 0 20px 20px;
+    align-items: center;
+    flex-wrap: wrap;
 
     & > h2 > a {
       color: #000;
@@ -23,8 +31,25 @@
       font-size: 18px;
     }
 
-    & > p {
-      font-size: 14px;
+    & > .price {
+      display: flex;
+      flex-direction: column;
+
+      & > .value {
+        font-size: 14px;
+      }
+
+      & > .currency {
+        font-family: 'Raleway', sans-serif;
+        font-size: 12px;
+        font-weight: 100;
+      }
+    }
+
+    & > .description {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      width: 100%;
     }
   }
 }
