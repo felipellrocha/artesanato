@@ -41,20 +41,22 @@ export default class Artwork extends React.Component {
     return (
       <div className={ classes }>
         {screenshot &&
-          <div className="screenshot">
+          <div className='screenshot'>
             <Link to={ ArtworkLink(id) }>
               <img src={ screenshot } />
             </Link>
           </div>
         }
-        <div className="details">
-          <h2><Link to={ link }>{ title }</Link></h2>
-          {price &&
-            <p className='price'>
-              <span className="value">{ price.value }</span>
-              <span className="currency">{ price.currency }</span>
-            </p>
-          }
+        <div className='details'>
+          <div className='row'>
+            <h2><Link to={ link }>{ title }</Link></h2>
+            {price &&
+              <p className='price'>
+                <span className='value'>{ price.value }</span>
+                <span className='currency'>{ price.currency }</span>
+              </p>
+            }
+          </div>
           <p className='description'>{ description }</p>
         </div>
       </div>

@@ -19,30 +19,35 @@
   }
 
   & > .details {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px 20px;
-    align-items: center;
-    flex-wrap: wrap;
+    padding: 0 20px;
 
-    & > h2 > a {
-      color: #000;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    & > .price {
+    & > .row {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 0;
 
-      & > .value {
-        font-size: 14px;
+      & > h2 > a {
+        color: #000;
+        text-decoration: none;
+        font-size: 18px;
       }
 
-      & > .currency {
-        font-family: 'Raleway', sans-serif;
-        font-size: 12px;
-        font-weight: 100;
+      & > .price {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.0em;
+
+        & > .value {
+          font-size: 14px;
+        }
+
+        & > .currency {
+          font-family: 'Raleway', sans-serif;
+          font-size: 12px;
+          font-weight: 100;
+        }
       }
     }
 
@@ -50,6 +55,7 @@
       font-family: 'Raleway', sans-serif;
       font-size: 12px;
       width: 100%;
+      padding-bottom: 20px;
     }
   }
 }
