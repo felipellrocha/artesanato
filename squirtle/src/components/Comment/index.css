@@ -1,7 +1,7 @@
 :local(.component) {
   background: #fff;
   padding: 20px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
 
   & > .user {

@@ -1,0 +1,10 @@
+:local(.component) {
+  margin: 20px 0;
+  text-align: center;
+
+  & > p {
+    font-family: 'Raleway', sans-serif;
+    color: #c5baba;
+    font-size: 10px;
+  }
+}

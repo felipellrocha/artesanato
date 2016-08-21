@@ -7,6 +7,7 @@ import {
   artwork as artworkOptions
 } from 'constants/rendering'
 
+import Separator from 'components/Separator'
 import Artwork from 'components/Artwork'
 import Profile from 'components/Profile'
 import Comment from 'components/Comment'
@@ -55,8 +56,9 @@ export default class SingleArtworkPage extends React.Component {
           </div>
           <div className='main'>
             <Artwork {...artwork} />
+            <Separator>Comments</Separator>
             {comments.map(comment =>
-              <Comment {...comment} />
+              <Comment {...comment} key={comment.id} />
             )}
           </div>
         </div>
