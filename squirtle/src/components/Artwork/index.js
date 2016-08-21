@@ -32,7 +32,6 @@ class Artwork extends React.Component {
       [className]: !!className,
     });
 
-
     return (
       <div className={ classes }>
         {screenshot &&

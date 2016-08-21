@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 
 import styles from './index.css'
 
@@ -9,10 +10,16 @@ export default class Profile extends React.Component {
       firstName,
       lastName,
       description,
+
+      className
     } = this.props;
 
+    const classes = classnames(styles.component, {
+      [className]: !!className,
+    });
+
     return (
-      <div className={styles.component}>
+      <div className={classes}>
         <div className='row'>
           <div className='profile-image'>
             <img src={ image } />

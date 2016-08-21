@@ -5,11 +5,11 @@
   display: flex;
 
   & > .user {
-    width: 20%;
+    width: 15%;
   }
 
   & > .comment {
-    width: 80%;
+    width: 85%;
 
     & > p {
       font-family: 'Raleway', sans-serif;

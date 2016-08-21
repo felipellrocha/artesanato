@@ -8,6 +8,8 @@ import { UserOfCommentSelector } from 'profiles/selectors'
 
 import styles from './index.css'
 
+import { small } from 'components/Profile/index.css'
+
 class Comment extends React.Component {
   render() {
     const {
@@ -23,7 +25,7 @@ class Comment extends React.Component {
           <p>{ comment.text }</p>
         </div>
         <div className='user'>
-          <Profile {...user} />
+          <Profile {...user} className={small} />
         </div>
       </div>
     );

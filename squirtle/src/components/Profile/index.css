@@ -27,3 +27,14 @@
     font-size: 12px;
   }
 }
+
+:local(.small) {
+  & > .row > h3 {
+    font-size: 12px;
+  }
+
+  & > .row > .profile-image {
+    width: 25px;
+    height: 25px;
+  }
+}
