@@ -4,6 +4,7 @@
     align-items: center;
 
     & > h3 {
+      width: calc(100% - 50px);
       font-family: 'Montserrat', sans-serif;
     }
 
