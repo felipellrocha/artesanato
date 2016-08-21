@@ -11,8 +11,6 @@ export default class Profile extends React.Component {
       description,
     } = this.props;
 
-    debugger;
-
     return (
       <div className={styles.component}>
         <div className='row'>

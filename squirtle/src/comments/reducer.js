@@ -10,17 +10,8 @@ const initialState = {
 
 export default handleActions({
   RECEIVE_SINGLE_PRODUCT: (state, action) => {
-    const {
-      artwork,
-    } = action.product.entities
+    const { comment } = action.product.entities
 
-    return Object.assign({}, artwork)
-  },
-  RECEIVE_HOME_PAGE: (state, action) => {
-    const {
-      artwork,
-    } = action.products.entities;
-
-    return Object.assign({}, artwork)
+    return Object.assign({}, comment)
   }
 }, initialState);

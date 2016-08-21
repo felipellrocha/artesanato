@@ -25,8 +25,6 @@ class Home extends React.Component {
       products,
     } = this.props;
 
-    console.log(products);
-
     return (
       <div className={styles.component}>
         <div className='banner'>
@@ -43,7 +41,6 @@ class Home extends React.Component {
         <div className='market'>
           {
             products.map((artwork, i) => {
-              console.log(artwork);
               return (
                 <Artwork
                   {...artwork}
@@ -61,8 +58,6 @@ class Home extends React.Component {
 
 export default connect(state => {
   const products = state.ui.productList.map(d => {
-    console.log(d);
-    console.log(SingleArtworkSelector(state, d))
     return SingleArtworkSelector(state, d)
   });
 

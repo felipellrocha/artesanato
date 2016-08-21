@@ -1,3 +1,5 @@
+import { handleActions } from 'redux-actions'
+
 import {
   RECEIVE_HOME_PAGE,
   RECEIVE_SINGLE_PRODUCT,
@@ -7,13 +9,10 @@ const initialState = {
   productList: [],
 };
 
-export default function artwork(state = initialState, action) {
-  switch (action.type) {
-    case RECEIVE_HOME_PAGE:
-      console.log(action.products.result);
-      return {
-        productList: action.products.result,
-      };
-  }
-  return state;
-}
+export default handleActions({
+  RECEIVE_HOME_PAGE: (state, action) => {
+    return {
+      productList: action.products.result,
+    };
+  },
+}, initialState);
