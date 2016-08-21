@@ -1,5 +1,12 @@
 import { normalize, Schema, arrayOf } from 'normalizr'
 
-const Profile = new Schema('profile', { idAttribute: 'id' });
+import ProfileNormalizer from 'profiles/normalizers'
 
-export default Profile;
+const Comment = new Schema('comment', { idAttribute: 'id' });
+
+Comment.define({
+  user: ProfileNormalizer,
+})
+
+
+export default Comment;

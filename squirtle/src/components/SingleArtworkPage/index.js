@@ -9,7 +9,12 @@ import {
 
 import Artwork from 'components/Artwork'
 import Profile from 'components/Profile'
+import Comment from 'components/Comment'
 import { loadSingleProduct } from 'actions/page'
+
+import {
+  CommentsOfProductSelector,
+} from 'comments/selectors'
 
 import {
   SellerOfProductSelector,
@@ -36,6 +41,7 @@ export default class SingleArtworkPage extends React.Component {
     const {
       artwork,
       seller,
+      comments,
     } = this.props;
 
     if (!artwork) return null;
@@ -47,7 +53,12 @@ export default class SingleArtworkPage extends React.Component {
             <h2>Artista</h2>
             <Profile {...seller} />
           </div>
-          <Artwork {...artwork} />
+          <div className='main'>
+            <Artwork {...artwork} />
+            {comments.map(comment =>
+              <Comment {...comment} />
+            )}
+          </div>
         </div>
       </div>
     );
@@ -58,9 +69,11 @@ export default class SingleArtworkPage extends React.Component {
 export default connect((state, props) => {
   const artwork = SingleArtworkSelector(state, props.params.artworkId);
   const seller = SellerOfProductSelector(state, artwork);
+  const comments = CommentsOfProductSelector(state, artwork);
 
   return {
     artwork,
     seller,
+    comments,
   }
 })(SingleArtworkPage)

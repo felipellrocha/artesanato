@@ -1,0 +1,19 @@
+:local(.component) {
+  background: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+
+  & > .user {
+    width: 20%;
+  }
+
+  & > .comment {
+    width: 80%;
+
+    & > p {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+    }
+  }
+}

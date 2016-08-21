@@ -23,7 +23,7 @@ users = {
     'id': '51f7709a',
     'first_name': 'Jon',
     'last_name': 'Snow',
-    'image': 'images/profiles/jon-snow.png',
+    'image': 'images/profiles/jon-snow.jpg',
     'description': "Maidenpool Wun Weg Wun Dar Wun skirling pass lemonwood loras tower of joy ashara. Night's king sunspear maidenpool areo. bran fingers alliser thorne castle black eyrie oh my sweet summer child lemonwood jaehaerys ashara tormund. Storm's end maegor red keep, wyman manderly aemon areo hotah coldhands rickon summerhall frostfangs brandon stark.",
   },
 }
