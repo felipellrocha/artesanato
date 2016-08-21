@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { getAll, getSingle } from 'queries/products'
+import { getAll, getSingle } from 'products/queries'
+
+import ArtworkNormalizer from 'products/normalizers'
+import { normalize, arrayOf } from 'normalizr'
 
 export const LOAD_SINGLE_PRODUCT = 'LOAD_SINGLE_PRODUCT'
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT'
@@ -14,7 +17,8 @@ export function loadSingleProduct(id) {
         query: getSingle(id),
       }
     }).then((response) => {
-			dispatch(receiveSingleProduct(response.data.data.product));
+      const data = normalize(response.data.data.product, ArtworkNormalizer);
+			dispatch(receiveSingleProduct(data));
     });
   }
 }
@@ -33,8 +37,8 @@ export function loadHomePage() {
         query: getAll(),
       }
     }).then((response) => {
-			console.log(response);
-			dispatch(receiveHomePage(response.data.data.products));
+			const data = normalize(response.data.data.products, arrayOf(ArtworkNormalizer));
+			dispatch(receiveHomePage(data));
     });
   }
 }

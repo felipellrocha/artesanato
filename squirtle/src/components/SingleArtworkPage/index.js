@@ -9,11 +9,15 @@ import {
 
 import Artwork from 'components/Artwork'
 import Profile from 'components/Profile'
-import { loadSingleProduct } from 'actions/products'
+import { loadSingleProduct } from 'actions/page'
+
+import {
+  SellerOfProductSelector,
+} from 'profiles/selectors'
 
 import {
   SingleArtworkSelector,
-} from 'selectors/artwork'
+} from 'products/selectors'
 
 export default class SingleArtworkPage extends React.Component {
   componentDidMount() {
@@ -30,13 +34,9 @@ export default class SingleArtworkPage extends React.Component {
 
   render() {
     const {
-      artworks,
-      params: {
-        artworkId,
-      }
+      artwork,
+      seller,
     } = this.props;
-
-    const artwork = SingleArtworkSelector(artworks, artworkId);
 
     if (!artwork) return null;
 
@@ -44,12 +44,10 @@ export default class SingleArtworkPage extends React.Component {
       <div className={styles.component}>
         <div className='market'>
           <div className='sidebar'>
-            <Profile {...artwork.seller} />
+            <h2>Artista</h2>
+            <Profile {...seller} />
           </div>
-          <Artwork
-            {...artwork}
-            variant={artworkOptions.WITH_DESCRIPTION}
-          />
+          <Artwork {...artwork} />
         </div>
       </div>
     );
@@ -57,8 +55,12 @@ export default class SingleArtworkPage extends React.Component {
 };
 
 
-export default connect(state => {
+export default connect((state, props) => {
+  const artwork = SingleArtworkSelector(state, props.params.artworkId);
+  const seller = SellerOfProductSelector(state, artwork);
+
   return {
-    artworks: state.artwork,
+    artwork,
+    seller,
   }
 })(SingleArtworkPage)

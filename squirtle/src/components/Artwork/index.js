@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import { Link } from 'react-router'
 import { ArtworkLink } from 'Links'
 
@@ -7,18 +9,11 @@ import classnames from 'classnames'
 
 import styles from './index.css'
 
-export default class Artwork extends React.Component {
-  getDefaultProps() {
+class Artwork extends React.Component {
+  static defaultProps() {
     return {
       variant: artwork.COMMON,
-
       id: '000',
-      title: 'Titulo',
-      className: null,
-      price: {
-        value: 2.99,
-        currency: 'USD',
-      },
     }
   }
 
@@ -32,14 +27,8 @@ export default class Artwork extends React.Component {
       description,
     } = this.props;
 
-    const classes = classnames(styles.component, {
-      [className]: !!className,
-    });
-
-    const link = `artwork/${id}`;
-
     return (
-      <div className={ classes }>
+      <div className={ styles.component }>
         {screenshot &&
           <div className='screenshot'>
             <Link to={ ArtworkLink(id) }>
@@ -49,7 +38,7 @@ export default class Artwork extends React.Component {
         }
         <div className='details'>
           <div className='row'>
-            <h2><Link to={ link }>{ title }</Link></h2>
+            <h2><Link to={ ArtworkLink(id) }>{ title }</Link></h2>
             {price &&
               <p className='price'>
                 <span className='value'>{ price.value }</span>
@@ -57,7 +46,7 @@ export default class Artwork extends React.Component {
               </p>
             }
           </div>
-          <p className='description'>{ description }</p>
+          {description && <p className='description'>{ description }</p>}
         </div>
       </div>
     );
@@ -72,3 +61,4 @@ export default class Artwork extends React.Component {
   }
 };
 
+export default Artwork

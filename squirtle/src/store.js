@@ -5,10 +5,12 @@ import {
 } from 'redux'
 import thunk from 'redux-thunk'
 
-import artwork from 'reducers/artwork'
+import artworks from 'products/reducer'
+import profiles from 'profiles/reducer'
 
 const reducers = combineReducers({
-  artwork,
+  artworks,
+  profiles,
 });
 
 let store = createStore(

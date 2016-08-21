@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Artwork from 'components/Artwork'
-import { loadHomePage } from 'actions/products'
+import { loadHomePage } from 'actions/page'
 
 import banner from 'images/caruaru.jpg'
 
@@ -11,7 +11,7 @@ import styles from './index.css'
 import {
   ArtworkMapSelector,
   SingleArtworkSelector,
-} from 'selectors/artwork'
+} from 'products/selectors'
 
 class Home extends React.Component {
 

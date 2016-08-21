@@ -11,9 +11,10 @@ export default class Profile extends React.Component {
       description,
     } = this.props;
 
+    debugger;
+
     return (
       <div className={styles.component}>
-        <h2>Artista</h2>
         <div className='row'>
           <div className='profile-image'>
             <img src={ image } />

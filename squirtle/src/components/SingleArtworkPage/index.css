@@ -67,6 +67,7 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 
     & > .sidebar {
       width: 450px;
@@ -75,6 +76,9 @@
       padding: 20px;
       border-radius: 2px;
 
+      & > h2 {
+        font-family: 'Montserrat', sans-serif;
+      }
     }
   }
 }

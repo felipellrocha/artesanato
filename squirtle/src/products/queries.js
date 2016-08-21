@@ -1,21 +1,31 @@
 export const getSingle = (id) => `
 {
   product(id: "${id}") {
-    id
+		id
     title
     screenshot
     description
+    comments {
+      id
+      text
+      user {
+        id
+				firstName
+				lastName
+				image
+			}
+		}
     price {
       value
       currency
     }
-		seller {
+    seller {
       id
       firstName
       lastName
       image
-      description
-    }
+			description
+		}
   }
 }
 `
