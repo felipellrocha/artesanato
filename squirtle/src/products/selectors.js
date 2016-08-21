@@ -5,6 +5,3 @@ export const SingleArtworkSelector = (state, id) => (
   && state.artworks
   && state.artworks[id]
 )
-export const ArtworkMapSelector = (state) => {
-  return state.result;
-}

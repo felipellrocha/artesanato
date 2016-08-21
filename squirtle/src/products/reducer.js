@@ -3,19 +3,24 @@ import {
   RECEIVE_SINGLE_PRODUCT,
 } from 'actions/page'
 
+import { handleActions } from 'redux-actions'
+
 const initialState = {
 };
 
-export default function artwork(state = initialState, action) {
-  switch (action.type) {
-    case RECEIVE_SINGLE_PRODUCT:
-      const {
-        artwork,
-      } = action.product.entities
+export default handleActions({
+  RECEIVE_SINGLE_PRODUCT: (state, action) => {
+    const {
+      artwork,
+    } = action.product.entities
 
-      return Object.assign({}, artwork)
-    case RECEIVE_HOME_PAGE:
-      return action.products;
+    return Object.assign({}, artwork)
+  },
+  RECEIVE_HOME_PAGE: (state, action) => {
+    const {
+      artwork,
+    } = action.products.entities;
+
+    return Object.assign({}, artwork)
   }
-  return state;
-}
+}, initialState);

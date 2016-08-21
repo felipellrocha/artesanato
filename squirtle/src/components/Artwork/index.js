@@ -20,15 +20,21 @@ class Artwork extends React.Component {
   _renderCommon() {
     const {
       id,
-      className,
       screenshot,
       title,
       price,
       description,
+
+      className,
     } = this.props;
 
+    const classes = classnames(styles.component, {
+      [className]: !!className,
+    });
+
+
     return (
-      <div className={ styles.component }>
+      <div className={ classes }>
         {screenshot &&
           <div className='screenshot'>
             <Link to={ ArtworkLink(id) }>

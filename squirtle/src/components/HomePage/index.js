@@ -9,7 +9,6 @@ import banner from 'images/caruaru.jpg'
 import styles from './index.css'
 
 import {
-  ArtworkMapSelector,
   SingleArtworkSelector,
 } from 'products/selectors'
 
@@ -23,10 +22,10 @@ class Home extends React.Component {
 
   render() {
     const {
-      artworks,
+      products,
     } = this.props;
 
-    const products = ArtworkMapSelector(artworks);
+    console.log(products);
 
     return (
       <div className={styles.component}>
@@ -43,8 +42,8 @@ class Home extends React.Component {
         </div>
         <div className='market'>
           {
-            products.map((id, i) => {
-              const artwork = SingleArtworkSelector(artworks, id)
+            products.map((artwork, i) => {
+              console.log(artwork);
               return (
                 <Artwork
                   {...artwork}
@@ -61,7 +60,13 @@ class Home extends React.Component {
 };
 
 export default connect(state => {
+  const products = state.ui.productList.map(d => {
+    console.log(d);
+    console.log(SingleArtworkSelector(state, d))
+    return SingleArtworkSelector(state, d)
+  });
+
   return {
-    artworks: state.artwork,
+    products,
   }
 })(Home)
