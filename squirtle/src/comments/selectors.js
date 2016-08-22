@@ -7,6 +7,7 @@ export const SingleCommentSelector = (state, id) => (
 )
 
 export const CommentsOfProductSelector = (state, product) => {
-  if (product && product.comments && state && state.comments)
-    return product.comments.map((comment) => state.comments[comment])
+  if (!(product && product.comments && state && state.comments)) return [];
+
+  return product.comments.map((comment) => state.comments[comment])
 }

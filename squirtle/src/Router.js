@@ -12,8 +12,6 @@ import App from 'components/App'
 import HomePage from 'components/HomePage'
 import SingleArtworkPage from 'components/SingleArtworkPage'
 
-console.log(messages);
-
 render(
   <Provider store={store}>
     <IntlProvider locale='en' messages={messages}>

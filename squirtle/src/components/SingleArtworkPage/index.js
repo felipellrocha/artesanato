@@ -61,10 +61,14 @@ export default class SingleArtworkPage extends React.Component {
           </div>
           <div className='main'>
             <Artwork {...artwork} />
-            <Separator><FormattedMessage id='SingleArtworkPage.comment' /></Separator>
-            {comments.map(comment =>
-              <Comment {...comment} key={comment.id} />
-            )}
+            {!!comments.length &&
+              <div>
+                <Separator><FormattedMessage id='SingleArtworkPage.comment' /></Separator>
+                {comments.map(comment =>
+                  <Comment {...comment} key={comment.id} />
+                )}
+              </div>
+            }
           </div>
         </div>
       </div>
