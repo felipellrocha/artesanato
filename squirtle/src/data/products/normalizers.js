@@ -1,6 +1,6 @@
 import { normalize, Schema, arrayOf } from 'normalizr'
-import ProfileNormalizer from 'profiles/normalizers'
-import CommentNormalizer from 'comments/normalizers'
+import ProfileNormalizer from 'data/profiles/normalizers'
+import CommentNormalizer from 'data/comments/normalizers'
 
 const Artwork = new Schema('artwork', { idAttribute: 'id' });
 

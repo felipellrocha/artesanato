@@ -17,15 +17,15 @@ import { loadSingleProduct } from 'actions/page'
 
 import {
   CommentsOfProductSelector,
-} from 'comments/selectors'
+} from 'data/comments/selectors'
 
 import {
   SellerOfProductSelector,
-} from 'profiles/selectors'
+} from 'data/profiles/selectors'
 
 import {
   SingleArtworkSelector,
-} from 'products/selectors'
+} from 'data/products/selectors'
 
 import styles from './index.css'
 import { largeMargin } from 'components/Profile/index.css'

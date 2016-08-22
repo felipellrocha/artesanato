@@ -5,8 +5,8 @@ import classname from 'classnames'
 
 import Profile from 'components/Profile'
 
-import { SingleCommentSelector } from 'comments/selectors' 
-import { UserOfCommentSelector } from 'profiles/selectors' 
+import { SingleCommentSelector } from 'data/comments/selectors' 
+import { UserOfCommentSelector } from 'data/profiles/selectors' 
 
 import { FormattedRelative } from 'react-intl'
 

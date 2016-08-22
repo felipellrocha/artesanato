@@ -7,6 +7,8 @@ import { ArtworkLink } from 'Links'
 import { ARTWORK } from 'constants'
 import classnames from 'classnames'
 
+import { FormattedMessage } from 'react-intl'
+
 import styles from './index.css'
 
 class Artwork extends React.Component {
@@ -45,10 +47,13 @@ class Artwork extends React.Component {
           <div className='row'>
             <h2><Link to={ ArtworkLink(id) }>{ title }</Link></h2>
             {price &&
-              <p className='price'>
-                <span className='value'>{ price.value }</span>
-                <span className='currency'>{ price.currency }</span>
-              </p>
+              <a className='add-to-cart'>
+                <FormattedMessage id='Artwork.addToCart' />
+                <p className='price'>
+                  <span className='value'>{ price.value }</span>
+                  <span className='currency'>{ price.currency }</span>
+                </p>
+              </a>
             }
           </div>
           {description && <p className='description'>{ description }</p>}

@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { getAll, getSingle } from 'products/queries'
+import { getAll, getSingle } from 'data/products/queries'
 
-import ArtworkNormalizer from 'products/normalizers'
+import ArtworkNormalizer from 'data/products/normalizers'
 import { normalize, arrayOf } from 'normalizr'
 
 export const LOAD_SINGLE_PRODUCT = 'LOAD_SINGLE_PRODUCT'

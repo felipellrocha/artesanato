@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 import Artwork from 'components/Artwork'
 import { loadHomePage } from 'actions/page'
 
-import banner from 'images/caruaru.jpg'
-
 import styles from './index.css'
 
 import {
   SingleArtworkSelector,
-} from 'products/selectors'
+} from 'data/products/selectors'
 
 class Home extends React.Component {
 
@@ -32,7 +30,7 @@ class Home extends React.Component {
             <h3>Artesanato</h3> 
             <p>facil, e barato</p>
           </div>
-          <img src={banner} />
+          <img src='images/caruaru.jpg' />
           <div className='input'>
             <input placeholder='O que voce esta procurando?' />
             <a className='submit'>Procurar</a>

@@ -34,19 +34,28 @@
         font-size: 18px;
       }
 
-      & > .price {
+      & > .add-to-cart {
         display: flex;
-        flex-direction: column;
-        line-height: 1.0em;
+        align-items: center;
+        background: #76B5A0;
+        color: #fff;
+        padding: 7px 20px;
+        border-radius: 999px;
+        font-size: 12px;
+        
+        & > .price {
+          margin-left: 10px;
 
-        & > .value {
-          font-size: 14px;
-        }
+          & > .value {
+            font-size: 14px;
+          }
 
-        & > .currency {
-          font-family: 'Raleway', sans-serif;
-          font-size: 12px;
-          font-weight: 100;
+          & > .currency {
+            font-family: 'Raleway', sans-serif;
+            font-size: 12px;
+            font-weight: 100;
+            margin-left: 5px;
+          }
         }
       }
     }
@@ -63,5 +72,26 @@
 :local(.largeImage) {
   & > .screenshot {
     height: 400px;
+  }
+
+  & > .details
+  > .row
+  > .add-to-cart
+  > .price {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.0em;
+    margin-left: 10px;
+
+    & > .value {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    & > .currency {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 100;
+    }
   }
 }
