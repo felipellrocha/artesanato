@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import styles from './index.css'
-
 import {
   artwork as artworkOptions
 } from 'constants/rendering'
@@ -28,6 +26,9 @@ import {
 import {
   SingleArtworkSelector,
 } from 'products/selectors'
+
+import styles from './index.css'
+import { largeMargin } from 'components/Profile/index.css'
 
 export default class SingleArtworkPage extends React.Component {
   componentDidMount() {
@@ -56,7 +57,7 @@ export default class SingleArtworkPage extends React.Component {
         <div className='market'>
           <div className='sidebar'>
             <h2>Artista</h2>
-            <Profile {...seller} />
+            <Profile {...seller} className={largeMargin} />
           </div>
           <div className='main'>
             <Artwork {...artwork} />

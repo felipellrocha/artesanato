@@ -4,6 +4,12 @@ from graphene import relay, resolve_only_args
 schema = graphene.Schema()
 
 comments = {
+  '933a5177': {
+    'id': '933a5177',
+    'user': '1ec38fd5',
+    'text': "House of black and white syrio forel euron, fear cuts deeper than swords thoros melisandre eddard kill the boy lysa. Our knees do not bend easily dunk god's eye the lone wolf dies but the pack survives tower of joy iron islands nightfort aenys. Your joy will turn to ashes in your mouth dance with me then hot pie casterly rock lannisport i dreamed that I was old meereen oldtown, night's king gendry greatjon. Jaime dolorous edd lysa summer, ruby ford chett jaehaerys.",
+    'datetime': '2016-08-21T17:28:26.108937'
+  },
   '9d587390': {
     'id': '9d587390',
     'user': '51f7709a',
@@ -38,6 +44,7 @@ products = {
       'description': "the wall fire and blood joffrey howland reed dontos hollard euron rhaenyra varys. Bael the bard king's landing the knights of summer fear cuts deeper than swords osha elia egg pyke. Catelyn the pointy end shireen greatjon the lone wolf dies but the pack survives lady. Greywind ruby ford areo hotah, jaime jory great wyk promise me ned oh my sweet summer child.",
       'comments': [
         '9d587390',
+        '933a5177',
       ],
       'price': {
         'value': '2.99',

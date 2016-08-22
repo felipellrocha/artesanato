@@ -29,6 +29,10 @@
   }
 }
 
+:local(.largeMargin) {
+  margin: 20px 0;
+}
+
 :local(.rightAligned) {
   & > .row {
     flex-direction: row-reverse;
@@ -48,5 +52,9 @@
   & > .row > .profile-image {
     width: 25px;
     height: 25px;
+  }
+
+  & > p {
+    display: none;
   }
 }

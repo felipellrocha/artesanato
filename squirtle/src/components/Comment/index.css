@@ -1,7 +1,7 @@
 :local(.component) {
   background: #fff;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   display: flex;
 
   & > .meta {
@@ -22,4 +22,10 @@
       font-size: 12px;
     }
   }
+
+  & + :local(.component) {
+    margin-top: 0;
+    border-top: 1px dotted #ece9e9;
+  }
 }
+

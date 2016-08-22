@@ -2,9 +2,30 @@
   margin: 20px 0;
   text-align: center;
 
-  & > p {
+  & > p > span {
     font-family: 'Raleway', sans-serif;
     color: #c5baba;
     font-size: 10px;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: '';
+      width: 300px;
+      border-top: 1px solid #ece9e9;
+      border-bottom: 1px solid #ece9e9;
+      height: 5px;
+      position: absolute;
+      margin: 0 20px;
+      top: 1px;
+    }
+
+    &:after {
+      left: 100%;
+    }
+
+    &:before {
+      right: 100%;
+    }
   }
 }
