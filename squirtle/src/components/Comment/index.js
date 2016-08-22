@@ -1,14 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import classname from 'classnames'
+
 import Profile from 'components/Profile'
 
 import { SingleCommentSelector } from 'comments/selectors' 
 import { UserOfCommentSelector } from 'profiles/selectors' 
 
+import { FormattedRelative } from 'react-intl'
+
 import styles from './index.css'
 
-import { small } from 'components/Profile/index.css'
+import {
+  small,
+  rightAligned,
+} from 'components/Profile/index.css'
 
 class Comment extends React.Component {
   render() {
@@ -17,15 +24,16 @@ class Comment extends React.Component {
       user,
     } = this.props;
 
-    console.log(comment, user)
+    const profileClasses = classname(small, rightAligned);
 
     return (
       <div className={styles.component}>
         <div className='comment'>
           <p>{ comment.text }</p>
         </div>
-        <div className='user'>
-          <Profile {...user} className={small} />
+        <div className='meta'>
+          <Profile {...user} className={profileClasses} />
+          <FormattedRelative value={comment.datetime} />
         </div>
       </div>
     );

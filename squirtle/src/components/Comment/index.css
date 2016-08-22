@@ -4,8 +4,14 @@
   margin-bottom: 20px;
   display: flex;
 
-  & > .user {
+  & > .meta {
     width: 15%;
+    text-align: right;
+
+    & > span {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+    }
   }
 
   & > .comment {

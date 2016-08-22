@@ -7,6 +7,10 @@ import {
   artwork as artworkOptions
 } from 'constants/rendering'
 
+import messages from 'messages'
+
+import { FormattedMessage } from 'react-intl'
+
 import Separator from 'components/Separator'
 import Artwork from 'components/Artwork'
 import Profile from 'components/Profile'
@@ -56,7 +60,7 @@ export default class SingleArtworkPage extends React.Component {
           </div>
           <div className='main'>
             <Artwork {...artwork} />
-            <Separator>Comments</Separator>
+            <Separator><FormattedMessage id='SingleArtworkPage.comment' /></Separator>
             {comments.map(comment =>
               <Comment {...comment} key={comment.id} />
             )}

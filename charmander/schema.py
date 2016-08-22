@@ -8,6 +8,7 @@ comments = {
     'id': '9d587390',
     'user': '51f7709a',
     'text': "Bloodraven dorne god's eye, lyanna crownlands starfall old nan godsgrace king's landing the things I do for love podrick bran. Night's king ramsay essos vale of arryn brave companions meereen, valar morghulis balon dragonstone.",
+    'datetime': '2016-08-21T15:02:06.022893'
   }
 }
 
@@ -78,6 +79,7 @@ class Comment(graphene.ObjectType):
   id = graphene.ID()
   user = graphene.Field(Profile)
   text = graphene.String()
+  datetime = graphene.String()
 
   def resolve_user(self, args, _):
     user = users[self.user]

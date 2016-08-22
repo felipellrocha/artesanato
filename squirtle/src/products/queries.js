@@ -8,6 +8,7 @@ export const getSingle = (id) => `
     comments {
       id
       text
+      datetime
       user {
         id
 				firstName
