@@ -24,7 +24,7 @@ users = {
     'first_name': 'Stannis',
     'last_name': 'of House Baratheon',
     'image': 'images/profiles/stannis.png',
-    'description': "Darkstar winterfell casterly rock jaqen. Bronn rhaegal robb I'm no one. Tysha vaes dothrak the twins bael the bard greatjon viserion kill the boy sansa jon connington harrenhal olenna dragonstone alliser thorne. Victarion iron islands gift, howland reed what is dead may never die elia horn hill strong belwas red keep quentyn. Arya samwell i dreamed that I was old reach, doran aeron dagmer cleftjaw gilly.",
+    'description': "The second born son of Steffon Baratheon and Cassana Baratheon, the younger brother of the late King Robert Baratheon and older brother of Renly Baratheon. Steffon was the head of House Baratheon and Lord Paramount of the Stormlands. The Stormlands are one of the constituent regions of the Seven Kingdoms and House Baratheon is one of the Great Houses of the realm. Steffon died when the boys were young and Robert inherited his titles. Stannis is a serious and severe man.",
   },
   '51f7709a': {
     'id': '51f7709a',
