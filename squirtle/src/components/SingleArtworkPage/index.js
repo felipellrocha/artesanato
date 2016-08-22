@@ -57,7 +57,7 @@ export default class SingleArtworkPage extends React.Component {
       <div className={styles.component}>
         <div className='market'>
           <div className='sidebar'>
-            <h2>Artista</h2>
+            <h2><FormattedMessage id='Common.seller' /></h2>
             <Profile {...seller} className={largeMargin} />
           </div>
           <div className='main'>

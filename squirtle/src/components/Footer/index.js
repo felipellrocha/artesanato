@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import { HomeLink } from 'Links'
 
+import { FormattedMessage } from 'react-intl'
+
 import styles from './index.css'
 
 export default class Header extends React.Component {
@@ -12,9 +14,9 @@ export default class Header extends React.Component {
         <div className='main'>
           <div className='logo'><Link to={HomeLink()}>Artesanato</Link></div>
           <ul className='menu'>
-            <li><Link to={HomeLink()}>Pagina Principal</Link></li>
-            <li><a>Conta</a></li>
-            <li><a>Artesão</a></li>
+            <li><Link to={HomeLink()}><FormattedMessage id='Menu.main' /></Link></li>
+            <li><a><FormattedMessage id='Menu.account' /></a></li>
+            <li><a><FormattedMessage id='Common.seller' /></a></li>
           </ul>
         </div>
         <div className='bottom'>
