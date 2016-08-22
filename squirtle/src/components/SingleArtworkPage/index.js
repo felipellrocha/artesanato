@@ -29,6 +29,7 @@ import {
 
 import styles from './index.css'
 import { largeMargin } from 'components/Profile/index.css'
+import { largeImage } from 'components/Artwork/index.css'
 
 export default class SingleArtworkPage extends React.Component {
   componentDidMount() {
@@ -60,7 +61,7 @@ export default class SingleArtworkPage extends React.Component {
             <Profile {...seller} className={largeMargin} />
           </div>
           <div className='main'>
-            <Artwork {...artwork} />
+            <Artwork {...artwork} className={largeImage} />
             {!!comments.length &&
               <div>
                 <Separator><FormattedMessage id='SingleArtworkPage.comment' /></Separator>

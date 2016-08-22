@@ -59,3 +59,9 @@
     }
   }
 }
+
+:local(.largeImage) {
+  & > .screenshot {
+    height: 400px;
+  }
+}
