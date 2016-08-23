@@ -5,8 +5,6 @@ import {
   artwork as artworkOptions
 } from 'constants/rendering'
 
-import messages from 'messages'
-
 import { FormattedMessage } from 'react-intl'
 
 import Separator from 'components/Separator'

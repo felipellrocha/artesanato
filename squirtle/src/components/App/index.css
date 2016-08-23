@@ -18,3 +18,62 @@ p {
 
 //font-family: 'Raleway', sans-serif;
 //font-family: 'Montserrat', sans-serif;
+
+:local(.form) {
+  width: 450px;
+  margin: 0 auto;
+  border: 1px solid #eae6e6;
+
+  & > .input {
+    position: relative;
+    border-bottom: 1px solid #eae6e6;
+    margin: 2px;
+
+    & > label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+
+    & > input {
+      width: 100%;
+      padding: 20px 5px 5px;
+      font-family: 'Raleway', sans-serif;
+      border: 0;
+      font-size: 18px;
+    }
+
+    & + .input {
+      border-bottom: none;
+    }
+  }
+}
+
+:local(.button) {
+  font-family: 'Raleway', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  background: #76B5A0;
+  color: #fff;
+  padding: 7px 20px;
+  font-size: 12px;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+  margin-right: 1px;
+
+  & + :local(.button) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &:last-child {
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+  }
+}
+
+:local(.secondaryButton) {
+  background: #dcd5d5;
+}

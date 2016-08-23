@@ -35,19 +35,12 @@
       }
 
       & > .add-to-cart {
-        display: flex;
-        align-items: center;
-        background: #76B5A0;
-        color: #fff;
-        padding: 7px 20px;
-        border-radius: 999px;
-        font-size: 12px;
-        
         & > .price {
           margin-left: 10px;
 
           & > .value {
             font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
           }
 
           & > .currency {

@@ -4,10 +4,7 @@ import { getAll, getSingle } from 'data/products/queries'
 import ArtworkNormalizer from 'data/products/normalizers'
 import { normalize, arrayOf } from 'normalizr'
 
-export const LOAD_SINGLE_PRODUCT = 'LOAD_SINGLE_PRODUCT'
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT'
-
-export const LOAD_HOME_PAGE = 'LOAD_HOME_PAGE'
 export const RECEIVE_HOME_PAGE = 'RECEIVE_HOME_PAGE'
 
 export function loadSingleProduct(id) {

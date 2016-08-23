@@ -1,6 +1,12 @@
 import flattenMessages from 'utils/flatten'
 
 export default flattenMessages({
+  AuthForm: {
+    username: 'Usuário',
+    password: 'Senha',
+    login: 'Login',
+    forgot: 'Esqueceu a Senha',
+  },
   Common: {
     seller: 'Artesão',
   },

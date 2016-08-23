@@ -21,6 +21,10 @@
       color: #5c4d4d;
       text-decoration: none;
 
+      * {
+        height: 15px;
+      }
+
       &:hover {
         color: #000;
         border-bottom: 3px solid #ff7575;

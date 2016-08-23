@@ -1,75 +1,9 @@
 import graphene
-from graphene import relay, resolve_only_args
+from graphene import relay, resolve_only_args, with_context
+
+from data import *
 
 schema = graphene.Schema()
-
-comments = {
-  '933a5177': {
-    'id': '933a5177',
-    'user': '1ec38fd5',
-    'text': "House of black and white syrio forel euron, fear cuts deeper than swords thoros melisandre eddard kill the boy lysa. Our knees do not bend easily dunk god's eye the lone wolf dies but the pack survives tower of joy iron islands nightfort aenys. Your joy will turn to ashes in your mouth dance with me then hot pie casterly rock lannisport i dreamed that I was old meereen oldtown, night's king gendry greatjon. Jaime dolorous edd lysa summer, ruby ford chett jaehaerys.",
-    'datetime': '2016-08-21T17:28:26.108937'
-  },
-  '9d587390': {
-    'id': '9d587390',
-    'user': '51f7709a',
-    'text': "Bloodraven dorne god's eye, lyanna crownlands starfall old nan godsgrace king's landing the things I do for love podrick bran. Night's king ramsay essos vale of arryn brave companions meereen, valar morghulis balon dragonstone.",
-    'datetime': '2016-08-21T15:02:06.022893'
-  }
-}
-
-users = {
-  '1ec38fd5': {
-    'id': '1ec38fd5',
-    'first_name': 'Stannis',
-    'last_name': 'of House Baratheon',
-    'image': 'images/profiles/stannis.png',
-    'description': "The second born son of Steffon Baratheon and Cassana Baratheon, the younger brother of the late King Robert Baratheon and older brother of Renly Baratheon. Steffon was the head of House Baratheon and Lord Paramount of the Stormlands. The Stormlands are one of the constituent regions of the Seven Kingdoms and House Baratheon is one of the Great Houses of the realm. Steffon died when the boys were young and Robert inherited his titles. Stannis is a serious and severe man.",
-  },
-  '51f7709a': {
-    'id': '51f7709a',
-    'first_name': 'Jon',
-    'last_name': 'Snow',
-    'image': 'images/profiles/jon-snow.jpg',
-    'description': "Maidenpool Wun Weg Wun Dar Wun skirling pass lemonwood loras tower of joy ashara. Night's king sunspear maidenpool areo. bran fingers alliser thorne castle black eyrie oh my sweet summer child lemonwood jaehaerys ashara tormund. Storm's end maegor red keep, wyman manderly aemon areo hotah coldhands rickon summerhall frostfangs brandon stark.",
-  },
-}
-
-products = {
-  'entities': {
-    '82598577': {
-      'id': '82598577',
-      'title': 'Vasos simples',
-      'screenshot': 'images/products/vases.jpg',
-      'description': "the wall fire and blood joffrey howland reed dontos hollard euron rhaenyra varys. Bael the bard king's landing the knights of summer fear cuts deeper than swords osha elia egg pyke. Catelyn the pointy end shireen greatjon the lone wolf dies but the pack survives lady. Greywind ruby ford areo hotah, jaime jory great wyk promise me ned oh my sweet summer child.",
-      'comments': [
-        '9d587390',
-        '933a5177',
-      ],
-      'price': {
-        'value': '2.99',
-        'currency': 'USD',
-      },
-      'seller': '1ec38fd5',
-    },
-    'bfa60128': {
-      'id': 'bfa60128',
-      'title': 'Vasos de areia',
-      'screenshot': 'images/products/areias.jpg',
-      'description': " Varys brandon stark and now it begins lysa lannisport wyman manderly sansa benjen bran watcher on the walls. Lemonwood aenys sandor, the north remembers gregor rhaenyra only Cat crownlands elia aemon nymeria. Margaery stormlands euron sandor ashara.\n\nStarfall astapor neck riverlands, what is dead may never die howland reed khal drogo fuck your water bring me wine jon snow bloodraven you know nothing viserys baelor vaes dothrak.",
-      'comments': [],
-      'price': {
-        'value': '2.99',
-        'currency': 'USD',
-      },
-      'seller': '1ec38fd5',
-    }
-  },
-  'order': [
-    '82598577',
-    'bfa60128',
-  ]
-}
 
 class Price(graphene.ObjectType):
   value = graphene.Float()
@@ -81,6 +15,16 @@ class Profile(graphene.ObjectType):
   last_name = graphene.String()
   image = graphene.String()
   description = graphene.String()
+  username = graphene.String()
+  password = graphene.String()
+
+  @resolve_only_args
+  def resolve_username(self):
+    return None
+
+  @resolve_only_args
+  def resolve_password(self):
+    return None
 
 class Comment(graphene.ObjectType):
   id = graphene.ID()
@@ -123,7 +67,9 @@ class Query(graphene.ObjectType):
   def resolve_product(self, id):
     return Product(**products['entities'].get(id))
 
-  def resolve_products(self, args, *_):
+  @with_context
+  def resolve_products(self, args, context, info):
+    print args, context.__dict__
     return [Product(**products['entities'].get(id)) for id in products['order']]
 
 schema.query = Query

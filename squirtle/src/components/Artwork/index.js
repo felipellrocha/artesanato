@@ -10,6 +10,7 @@ import classnames from 'classnames'
 import { FormattedMessage } from 'react-intl'
 
 import styles from './index.css'
+import { button } from 'components/App/index.css'
 
 class Artwork extends React.Component {
   static defaultProps() {
@@ -34,6 +35,8 @@ class Artwork extends React.Component {
       [className]: !!className,
     });
 
+    const addToCartClasses = classnames('add-to-cart', button);
+
     return (
       <div className={ classes }>
         {screenshot &&
@@ -47,7 +50,7 @@ class Artwork extends React.Component {
           <div className='row'>
             <h2><Link to={ ArtworkLink(id) }>{ title }</Link></h2>
             {price &&
-              <a className='add-to-cart'>
+              <a className={ addToCartClasses }>
                 <FormattedMessage id='Artwork.addToCart' />
                 <p className='price'>
                   <span className='value'>{ price.value }</span>

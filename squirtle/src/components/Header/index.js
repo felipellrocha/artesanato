@@ -1,7 +1,10 @@
 import React from 'react'
 
 import { Link } from 'react-router'
-import { HomeLink } from 'Links'
+import {
+  HomeLink,
+  LoginLink,
+} from 'Links'
 
 import { FormattedMessage } from 'react-intl'
 
@@ -16,7 +19,7 @@ export default class Header extends React.Component {
         <div className='logo'><Link to={HomeLink()}>Artesanato</Link></div>
         <ul className='menu'>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.main' /></Link></li>
-          <li><a><FormattedMessage id='Menu.account' /></a></li>
+          <li><Link to={LoginLink()}><FormattedMessage id='Menu.account' /></Link></li>
           <li><a><FormattedMessage id='Common.seller' /></a></li>
           <li><a><InlineSVG src='store' /></a></li>
         </ul>

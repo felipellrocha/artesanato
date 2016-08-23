@@ -22,7 +22,11 @@ module.exports = {
       '/data*': {
         target: 'http://localhost:5000/',
         secure: false,
-      }
+      },
+      '/session*': {
+        target: 'http://localhost:5000/',
+        secure: false,
+      },
     },
     setup: function(app) {
       app.use(express.static('assets'))
