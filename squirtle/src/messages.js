@@ -16,6 +16,7 @@ export default flattenMessages({
   Menu: {
     main: 'Página principal',
     account: 'Conta',
+    about: 'Sobre o site',
   },
   SingleArtworkPage: {
 		comment: 'Comments',

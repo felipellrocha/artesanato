@@ -6,13 +6,13 @@ comments = {
   '933a5177': {
     'id': '933a5177',
     'user': '1ec38fd5',
-    'text': "House of black and white syrio forel euron, fear cuts deeper than swords thoros melisandre eddard kill the boy lysa. Our knees do not bend easily dunk god's eye the lone wolf dies but the pack survives tower of joy iron islands nightfort aenys. Your joy will turn to ashes in your mouth dance with me then hot pie casterly rock lannisport i dreamed that I was old meereen oldtown, night's king gendry greatjon. Jaime dolorous edd lysa summer, ruby ford chett jaehaerys.",
+    'text': "When Eddard Stark learned the truth, he told only me. I'll not make the same mistake. Send copies of that letter to every corner to the realm, from the Arbor to the Wall. The time has come to choose. Let no man claim ignorance as an excuse.",
     'datetime': '2016-08-21T17:28:26.108937'
   },
   '9d587390': {
     'id': '9d587390',
     'user': '51f7709a',
-    'text': "Bloodraven dorne god's eye, lyanna crownlands starfall old nan godsgrace king's landing the things I do for love podrick bran. Night's king ramsay essos vale of arryn brave companions meereen, valar morghulis balon dragonstone.",
+    'text': "I never met my mother. My father wouldn't even tell me her name. I don't know if she's living or dead. I don't know if she's a noblewoman or a fisherman's wife or a whore...",
     'datetime': '2016-08-21T15:02:06.022893'
   }
 }

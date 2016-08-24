@@ -14,8 +14,6 @@ import ProfileNormalizer from 'data/profiles/normalizers'
 
 const user = JSON.parse(localStorage.getItem('user') || null);
 
-console.log(user);
-
 const initialState = (function () {
   if (user) {
     const normal = normalize(user, ProfileNormalizer);
