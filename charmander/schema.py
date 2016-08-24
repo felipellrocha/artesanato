@@ -3,7 +3,26 @@ from graphene import relay, resolve_only_args, with_context
 
 from data import *
 
+import jwt
+import logging
+
+logging.basicConfig()
+logger = logging.getLogger(__name__)
+
 schema = graphene.Schema()
+
+def is_authenticated(request):
+  token = request.environ.get('HTTP_AUTHENTICATION', None)
+  logger.info(token)
+  if token:
+    try:
+      payload = jwt.decode(token, SECRET, ALGORITHM)
+    except (jwt.DecodeError, jwt.ExpiredSignatureError):
+      return False
+
+    return payload['user_id']
+  else:
+    return None
 
 class Price(graphene.ObjectType):
   value = graphene.Float()
@@ -18,8 +37,10 @@ class Profile(graphene.ObjectType):
   username = graphene.String()
   password = graphene.String()
 
-  @resolve_only_args
-  def resolve_username(self):
+  @with_context
+  def resolve_username(self, args, context, info):
+    if is_authenticated(context):
+      return self.username
     return None
 
   @resolve_only_args
@@ -69,7 +90,6 @@ class Query(graphene.ObjectType):
 
   @with_context
   def resolve_products(self, args, context, info):
-    print args, context.__dict__
     return [Product(**products['entities'].get(id)) for id in products['order']]
 
 schema.query = Query

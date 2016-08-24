@@ -1,15 +1,16 @@
-import axios from 'axios'
 import { getAll, getSingle } from 'data/products/queries'
 
 import ArtworkNormalizer from 'data/products/normalizers'
 import { normalize, arrayOf } from 'normalizr'
+
+import requests from 'utils/requests'
 
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT'
 export const RECEIVE_HOME_PAGE = 'RECEIVE_HOME_PAGE'
 
 export function loadSingleProduct(id) {
   return dispatch => {
-    axios.get('/data', {
+    requests.get('/data', {
       params: {
         query: getSingle(id),
       }
@@ -29,7 +30,7 @@ export function receiveSingleProduct(product) {
 
 export function loadHomePage() {
   return dispatch => {
-    axios.get('/data', {
+    requests.get('/data', {
       params: {
         query: getAll(),
       }

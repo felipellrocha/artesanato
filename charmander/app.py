@@ -5,21 +5,22 @@ from werkzeug.exceptions import abort
 from flask_graphql import GraphQLView
 
 from models.products import db_session
-from schema import schema
+from schema import ( schema, Profile )
 
 from datetime import datetime, timedelta
 
-from data import getUserByUsername
+from data import (
+  getUserByUsername,
+  SECRET,
+  EXPIRATION,
+  ALGORITHM,
+)
 
 import jwt
 
 import copy
 
 app = Flask(__name__)
-
-SECRET = 'b0a2626f-9ce0-4456-839e-e411ba6501ea'
-EXPIRATION = 30
-ALGORITHM = 'HS256'
 
 app.add_url_rule('/data', view_func=GraphQLView.as_view(
   'data',

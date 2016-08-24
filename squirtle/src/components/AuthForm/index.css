@@ -1,0 +1,6 @@
+:local(.component) {
+  & > .button-section {
+    margin: 20px auto;
+    width: 450px;
+  }
+}

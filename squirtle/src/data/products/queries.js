@@ -12,6 +12,7 @@ export const getSingle = (id) => `
       user {
         id
 				firstName
+        username
 				lastName
 				image
 			}
