@@ -13,6 +13,8 @@ import {
 
 import { FormattedMessage } from 'react-intl'
 
+import classnames from 'classnames'
+
 import Dropdown from 'components/Dropdown'
 import InlineSVG from 'components/InlineSVG'
 import Profile from 'components/Profile'
@@ -37,16 +39,18 @@ class Component extends React.Component {
       isDropdownOpen,
     } = this.props;
 
+    const profileClasses = classnames(small, styles.profile);
+
     return (
       <div className={styles.component}>
         <div className='logo'><Link to={HomeLink()}>Artesanato</Link></div>
         <ul className='menu'>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.main' /></Link></li>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.about' /></Link></li>
-          <li><a><InlineSVG src='store' /></a></li>
+          <li><a><InlineSVG src='cart' /></a></li>
           {currentUser ?
             <li className='profile' onClick={this._handleDropdown_.bind(this)}>
-              <Profile {...currentUser} className={small} />
+              <Profile {...currentUser} className={profileClasses} />
               <Dropdown className={styles.dropdownMenu} display={isDropdownOpen}>
                 <ul>
                   <li><a>Profile</a></li>

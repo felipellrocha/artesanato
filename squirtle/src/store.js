@@ -8,6 +8,7 @@ import thunk from 'redux-thunk'
 import artworks from 'data/products/reducer'
 import profiles from 'data/profiles/reducer'
 import comments from 'data/comments/reducer'
+import cart from 'data/cart/reducer'
 import ui from 'data/ui/reducer'
 import authentication from 'data/authentication/reducer'
 
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   comments,
   ui,
   authentication,
+  cart,
 });
 
 let store = createStore(
