@@ -1,19 +1,29 @@
 import graphene
 from graphene import relay, resolve_only_args, with_context
+from graphene.contrib.sqlalchemy import (
+  SQLAlchemyNode,
+  SQLAlchemyConnectionField,
+)
 
-from data import *
+from data import (
+  SECRET,
+  EXPIRATION,
+  ALGORITHM,
+)
+
+from models import (
+  Comment as CommentModel,
+  Product as ProductModel,
+  Profile as ProfileModel,
+)
 
 import jwt
 import logging
-
-logging.basicConfig()
-logger = logging.getLogger(__name__)
 
 schema = graphene.Schema()
 
 def is_authenticated(request):
   token = request.environ.get('HTTP_AUTHENTICATION', None)
-  logger.info(token)
   if token:
     try:
       payload = jwt.decode(token, SECRET, ALGORITHM)
@@ -24,18 +34,10 @@ def is_authenticated(request):
   else:
     return None
 
-class Price(graphene.ObjectType):
-  value = graphene.Float()
-  currency = graphene.String()
-
-class Profile(graphene.ObjectType):
-  id = graphene.ID()
-  first_name = graphene.String()
-  last_name = graphene.String()
-  image = graphene.String()
-  description = graphene.String()
-  username = graphene.String()
-  password = graphene.String()
+@schema.register
+class Profile(SQLAlchemyNode):
+  class Meta:
+    model = ProfileModel
 
   @with_context
   def resolve_username(self, args, context, info):
@@ -47,49 +49,18 @@ class Profile(graphene.ObjectType):
   def resolve_password(self):
     return None
 
-class Comment(graphene.ObjectType):
-  id = graphene.ID()
-  user = graphene.Field(Profile)
-  text = graphene.String()
-  datetime = graphene.String()
+@schema.register
+class Comment(SQLAlchemyNode):
+  class Meta:
+    model = CommentModel
 
-  def resolve_user(self, args, _):
-    user = users[self.user]
-    return Profile(**user)
-
-class Product(graphene.ObjectType):
-  id = graphene.ID()
-  title = graphene.String()
-  screenshot = graphene.String()
-  description = graphene.String()
-  price = graphene.Field(Price)
-  seller = graphene.Field(Profile)
-  comments = graphene.List(Comment)
-
-  def resolve_seller(self, args, _):
-    seller = users[self.seller]
-    return Profile(**seller)
-
-  def resolve_comments(self, args, *_):
-    return [Comment(**comments.get(id)) for id in self.comments]
-
-  def resolve_price(self, args, _):
-    return Price(**self.price)
+@schema.register
+class Product(SQLAlchemyNode):
+  class Meta:
+    model = ProductModel
 
 class Query(graphene.ObjectType):
-  product = graphene.Field(
-    Product,
-    id = graphene.String()
-  )
-
-  products = graphene.List(Product)
-
-  @resolve_only_args
-  def resolve_product(self, id):
-    return Product(**products['entities'].get(id))
-
-  @with_context
-  def resolve_products(self, args, context, info):
-    return [Product(**products['entities'].get(id)) for id in products['order']]
+  product = relay.NodeField(Product)
+  products = SQLAlchemyConnectionField(Product)
 
 schema.query = Query

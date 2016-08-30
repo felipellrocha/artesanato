@@ -33,7 +33,7 @@ class Comment extends React.Component {
         </div>
         <div className='meta'>
           <Profile {...user} className={profileClasses} />
-          <FormattedRelative value={comment.datetime} />
+          <FormattedRelative value={comment.createdAt} />
         </div>
       </div>
     );

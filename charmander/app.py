@@ -4,13 +4,12 @@ from flask import Flask, jsonify, request
 from werkzeug.exceptions import abort
 from flask_graphql import GraphQLView
 
-from models.products import db_session
+from database import db_session
 from schema import ( schema, Profile )
 
 from datetime import datetime, timedelta
 
 from data import (
-  getUserByUsername,
   SECRET,
   EXPIRATION,
   ALGORITHM,
@@ -33,6 +32,7 @@ app.add_url_rule('/data', view_func=GraphQLView.as_view(
 def status():
   return 'Everything is ok!'
 
+"""
 @app.route('/session/create', methods=['POST'])
 def session_create():
   formUser = request.json.get('username')
@@ -56,6 +56,7 @@ def session_create():
     'token': token.decode('utf-8'),
     'user': user,
   })
+"""
 
 @app.teardown_appcontext
 def shutdown_session(expection=None):

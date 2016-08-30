@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import classnames from 'classnames'
+
 import {
   artwork as artworkOptions
 } from 'constants/rendering'
@@ -26,10 +28,19 @@ import {
 } from 'data/products/selectors'
 
 import styles from './index.css'
+import { button, inactiveButton } from 'components/App/index.css'
 import { largeMargin } from 'components/Profile/index.css'
 import { largeImage } from 'components/Artwork/index.css'
 
+import {
+  typeTextarea,
+} from 'actions/ui'
+
 export default class SingleArtworkPage extends React.Component {
+  static defaultProps = {
+    maxLengthComment: 500,
+  }
+
   componentDidMount() {
     const {
       dispatch,
@@ -42,14 +53,32 @@ export default class SingleArtworkPage extends React.Component {
     dispatch(loadSingleProduct(artworkId))
   }
 
+  _handleType_(event) {
+    const {
+      dispatch,
+      maxLengthComment,
+      comment,
+    } = this.props;
+
+    if (event.target.value.length <= maxLengthComment)
+      dispatch(typeTextarea(event.target.value));
+  }
+
   render() {
     const {
       artwork,
       seller,
       comments,
+      comment,
+      maxLengthComment,
     } = this.props;
 
     if (!artwork) return null;
+
+    const buttonClasses = classnames(
+      button,
+      { [inactiveButton]: comment.length <= 0 }
+    )
 
     return (
       <div className={styles.component}>
@@ -68,6 +97,17 @@ export default class SingleArtworkPage extends React.Component {
                 )}
               </div>
             }
+            <textarea
+              placeholder='Write a comment'
+              value={comment}
+              onChange={this._handleType_.bind(this)}
+            />
+            <div className='comment-meta'>
+              <div className='button-group'>
+                <a className={buttonClasses}>Submit</a>
+              </div>
+              <span>{comment.length}/{maxLengthComment}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -80,10 +120,12 @@ export default connect((state, props) => {
   const artwork = SingleArtworkSelector(state, props.params.artworkId);
   const seller = SellerOfProductSelector(state, artwork);
   const comments = CommentsOfProductSelector(state, artwork);
+  const comment = state.ui.comment;
 
   return {
     artwork,
     seller,
     comments,
+    comment,
   }
 })(SingleArtworkPage)

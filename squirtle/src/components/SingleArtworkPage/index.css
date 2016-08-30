@@ -7,6 +7,23 @@
 
     & > .main {
       width: 70%;
+
+      textarea {
+        width: 100%;
+        border: 0;
+        height: 150px;
+        padding: 20px;
+        font-size: 12px;
+        box-shadow: 0 -3px 0px rgba(0, 0, 0, .1);
+      }
+
+      & > .comment-meta {
+        display: flex;
+        align-items: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: 12px;
+        justify-content: space-between;
+      }
     }
 
     & > .sidebar {

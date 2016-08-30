@@ -6,21 +6,22 @@ export const getSingle = (id) => `
     screenshot
     description
     comments {
-      id
-      text
-      datetime
-      user {
-        id
-				firstName
-        username
-				lastName
-				image
-			}
+      edges {
+        node {
+          id
+          text
+          createdAt
+          user {
+            id
+            firstName
+            username
+            lastName
+            image
+          }    
+        }
+      }
 		}
-    price {
-      value
-      currency
-    }
+    price
     seller {
       id
       firstName
@@ -35,12 +36,13 @@ export const getSingle = (id) => `
 export const getAll = () => `
 {
   products {
-    id
-    title
-    screenshot
-    price {
-      value
-      currency
+    edges {
+      node {
+        id
+        title
+        screenshot
+        price
+      }
     }
   }
 }

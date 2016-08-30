@@ -53,8 +53,8 @@ class Artwork extends React.Component {
               <a className={ addToCartClasses }>
                 <FormattedMessage id='Artwork.addToCart' />
                 <p className='price'>
-                  <span className='value'>{ price.value }</span>
-                  <span className='currency'>{ price.currency }</span>
+                  <span className='value'>{ price }</span>
+                  <span className='currency'>USD</span>
                 </p>
               </a>
             }

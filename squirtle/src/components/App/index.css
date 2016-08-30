@@ -63,7 +63,7 @@ p {
   border-bottom-left-radius: 999px;
   margin-right: 1px;
 
-  & + :local(.button) {
+  & ~ :local(.button) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -72,6 +72,12 @@ p {
     border-top-right-radius: 999px;
     border-bottom-right-radius: 999px;
   }
+}
+
+:local(.inactiveButton) {
+  background: #dcd5d5;
+  pointer-events: none;
+  cursor: default;
 }
 
 :local(.secondaryButton) {

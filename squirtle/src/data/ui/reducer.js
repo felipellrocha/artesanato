@@ -6,13 +6,15 @@ import {
 
 import {
   TOGGLE_ACCOUNT_DROPDOWN,
+  TYPE_TEXTAREA,
 } from 'actions/ui'
 
 const initialState = {
   productList: [],
   dropdowns: {
     account: false, 
-  }
+  },
+  comment: '',
 };
 
 export default handleActions({
@@ -27,5 +29,10 @@ export default handleActions({
         account: !state.dropdowns.account,
       }
     });
+  },
+  TYPE_TEXTAREA: (state, action) => {
+    return Object.assign({}, state, {
+      comment: action.text,
+    })
   }
 }, initialState);
