@@ -14,6 +14,7 @@ import Artwork from 'components/Artwork'
 import Profile from 'components/Profile'
 import Comment from 'components/Comment'
 import { loadSingleProduct } from 'actions/page'
+import { submitComment } from 'actions/comment'
 
 import {
   CommentsOfProductSelector,
@@ -64,6 +65,20 @@ export default class SingleArtworkPage extends React.Component {
       dispatch(typeTextarea(event.target.value));
   }
 
+  _handleSubmit_() {
+    const {
+      artwork,
+      seller,
+      dispatch,
+    } = this.props;
+
+    dispatch(submitComment(
+      this.refs.comment.value,
+      seller.pk,
+      artwork.pk,
+    ));
+  }
+
   render() {
     const {
       artwork,
@@ -100,11 +115,12 @@ export default class SingleArtworkPage extends React.Component {
             <textarea
               placeholder='Write a comment'
               value={comment}
+              ref={'comment'}
               onChange={this._handleType_.bind(this)}
             />
             <div className='comment-meta'>
               <div className='button-group'>
-                <a className={buttonClasses}>Submit</a>
+                <a className={buttonClasses} onClick={this._handleSubmit_.bind(this)}>Submit</a>
               </div>
               <span>{comment.length}/{maxLengthComment}</span>
             </div>

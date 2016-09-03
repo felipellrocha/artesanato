@@ -5,6 +5,10 @@ import {
 } from 'actions/page'
 
 import {
+  RECEIVE_COMMENT,
+} from 'actions/comment'
+
+import {
   RECEIVE_HOME_PAGE,
   RECEIVE_SINGLE_PRODUCT,
 } from 'actions/page'
@@ -31,6 +35,11 @@ export default handleActions({
   },
   RECEIVE_AUTH_TOKEN: (state, action) => {
     const { profile } = action.profile.entities
+
+    return Object.assign({}, state, profile)
+  },
+  RECEIVE_COMMENT: (state, action) => {
+    const { profile } = action.data.entities
 
     return Object.assign({}, state, profile)
   }

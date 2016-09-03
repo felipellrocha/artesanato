@@ -1,6 +1,10 @@
 import { handleActions } from 'redux-actions'
 
 import {
+  RECEIVE_COMMENT,
+} from 'actions/comment'
+
+import {
   RECEIVE_HOME_PAGE,
 } from 'actions/page'
 
@@ -33,6 +37,11 @@ export default handleActions({
   TYPE_TEXTAREA: (state, action) => {
     return Object.assign({}, state, {
       comment: action.text,
+    })
+  },
+  RECEIVE_COMMENT: (state, action) => {
+    return Object.assign({}, state, {
+      comment: '',
     })
   }
 }, initialState);
