@@ -1,20 +1,16 @@
 import { handleActions } from 'redux-actions'
 
-import {
-  RECEIVE_HOME_PAGE,
-  RECEIVE_SINGLE_PRODUCT,
-} from 'actions/page'
+import { ADD_TO_CART } from 'actions/cart'
 
-const initialState = {
-  userId: localStorage.getItem('userId'),
-};
+const initialState = JSON.parse(localStorage.getItem('cache_cart')) || {};
 
 export default handleActions({
-  RECEIVE_AUTH_TOKEN: (state, action) => {
-    const profileId = action.profile.result
+  ADD_TO_CART: (state, action) => {
+    const {
+      productId,
+    } = action;
 
-    return Object.assign({}, {
-      userId: profileId
-    })
+    if (state[productId]) return Object.assign({}, state, { [productId]: state[productId] + 1 })
+    else return Object.assign({}, state, { [productId]: 1 })
   }
 }, initialState);

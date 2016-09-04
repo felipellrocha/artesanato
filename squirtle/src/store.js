@@ -5,6 +5,8 @@ import {
 } from 'redux'
 import thunk from 'redux-thunk'
 
+import { CacheCart } from 'middlewares/cache'
+
 import artworks from 'data/products/reducer'
 import profiles from 'data/profiles/reducer'
 import comments from 'data/comments/reducer'
@@ -24,7 +26,10 @@ const reducers = combineReducers({
 let store = createStore(
   reducers,
   window.devToolsExtension && window.devToolsExtension(),
-  applyMiddleware(thunk)
+  applyMiddleware(
+    thunk,
+    CacheCart,
+  ),
 );
 
 export default store;
