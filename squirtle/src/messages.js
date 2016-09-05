@@ -20,6 +20,8 @@ export default flattenMessages({
   },
   SingleProductPage: {
 		comment: 'Comentários',
+    submit: 'Enviar',
+    writeAComment: 'Seja o primeiro a enviar um comentário!',
 	},
   CartReviewPage: {
     total: 'Total',

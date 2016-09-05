@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 
 import classnames from 'classnames'
 
-import { FormattedMessage } from 'react-intl'
+import {
+  FormattedMessage,
+  formatMessage,
+} from 'react-intl'
 
 import Separator from 'components/Separator'
 import Product from 'components/Product'
@@ -115,7 +118,9 @@ export default class Component extends React.Component {
             />
             <div className='comment-meta'>
               <div className='button-group'>
-                <a className={buttonClasses} onClick={this._handleSubmit_.bind(this)}>Submit</a>
+                <a className={buttonClasses} onClick={this._handleSubmit_.bind(this)}>
+                  <FormattedMessage id='SingleProductPage.submit' />
+                </a>
               </div>
               <span>{comment.length}/{maxLengthComment}</span>
             </div>
