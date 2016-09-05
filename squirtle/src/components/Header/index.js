@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import {
   HomeLink,
   LoginLink,
+  CartReviewLink,
 } from 'Links'
 
 import {
@@ -18,6 +19,7 @@ import classnames from 'classnames'
 import Dropdown from 'components/Dropdown'
 import InlineSVG from 'components/InlineSVG'
 import Profile from 'components/Profile'
+import Badge from 'components/Badge'
 
 import styles from './index.css'
 import { small } from 'components/Profile/index.css'
@@ -37,6 +39,7 @@ class Component extends React.Component {
     const {
       currentUser,
       isDropdownOpen,
+      totalItemsInCart,
     } = this.props;
 
     const profileClasses = classnames(small, styles.profile);
@@ -47,7 +50,13 @@ class Component extends React.Component {
         <ul className='menu'>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.main' /></Link></li>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.about' /></Link></li>
-          <li><a><InlineSVG src='cart' /></a></li>
+          <li>
+            <Link to={CartReviewLink()}>
+              <Badge content={totalItemsInCart} shouldDisplay={totalItemsInCart > 0}>
+                <InlineSVG src='cart' />
+              </Badge>
+            </Link>
+          </li>
           {currentUser ?
             <li className='profile' onClick={this._handleDropdown_.bind(this)}>
               <Profile {...currentUser} className={profileClasses} />
@@ -70,5 +79,6 @@ export default connect(state => {
   return {
     currentUser: GetCurrentUser(state),
     isDropdownOpen: state.ui.dropdowns.account,
+    totalItemsInCart: state.cart.total,
   }
 })(Component);

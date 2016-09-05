@@ -12,6 +12,7 @@ import App from 'components/App'
 import HomePage from 'components/HomePage'
 import SingleArtworkPage from 'components/SingleArtworkPage'
 import LoginPage from 'components/LoginPage'
+import CartReviewPage from 'components/CartReviewPage'
 
 render(
   <Provider store={store}>
@@ -21,6 +22,7 @@ render(
           <IndexRoute component={HomePage} />
           <Route path='artwork/:artworkId' component={SingleArtworkPage} />
           <Route path='login' component={LoginPage} />
+          <Route path='cart-review' component={CartReviewPage} />
         </Route>
       </Router>
     </IntlProvider>
