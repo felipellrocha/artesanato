@@ -19,6 +19,9 @@ export default flattenMessages({
     about: 'Sobre o site',
   },
   SingleProductPage: {
-		comment: 'Comments',
-	}
+		comment: 'Comentários',
+	},
+  CartReviewPage: {
+    total: 'Total',
+  }
 });

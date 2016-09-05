@@ -11,15 +11,15 @@ export const getProductsInCart = (state) => {
   const cart = Object.keys(state.cart.products)
   const products = Object.keys(state.products)
 
-  if (!products.length) return undefined;
+  return products.length > 0 ?
+    cart.map(product => {
+      const item = state.products[product]
 
-  return cart.map(product => {
-    const item = state.products[product]
+      item.quantity = state.cart.products[product]
 
-    item.quantity = state.cart.products[product]
-
-    return item
-  })
+      return item
+    }) :
+    []
 }
 
 export const getTotal = (products) =>

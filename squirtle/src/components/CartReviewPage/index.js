@@ -6,12 +6,16 @@ import classnames from 'classnames'
 import Product from 'components/Product'
 import InlineSVG from 'components/InlineSVG'
 
-import { FormattedNumber } from 'react-intl'
+import {
+  FormattedMessage,
+  FormattedNumber
+} from 'react-intl'
 
 import { loadCartProducts } from 'actions/page'
 import {
   addToCart,
   decreaseFromCart,
+  removeFromCart,
 } from 'actions/cart'
 
 import {
@@ -21,6 +25,7 @@ import {
 
 import styles from './index.css'
 import { listItem } from 'components/Product/index.css'
+import { button } from 'components/App/index.css'
 
 export default class Component extends React.Component {
 
@@ -30,7 +35,7 @@ export default class Component extends React.Component {
       ids,
     } = this.props;
 
-    dispatch(loadCartProducts(ids))
+    if (ids.length > 0) dispatch(loadCartProducts(ids))
   }
 
   _handleAddToCart_(id) {
@@ -49,13 +54,19 @@ export default class Component extends React.Component {
     dispatch(decreaseFromCart(id))
   }
 
+  _handleRemoveFromCart_(id) {
+    const {
+      dispatch,
+    } = this.props;
+
+    dispatch(removeFromCart(id))
+  }
+
   render() {
     const {
       products,
       total,
     } = this.props;
-
-    if (!products) return null;
 
     return (
       <div className={styles.component}>
@@ -99,15 +110,30 @@ export default class Component extends React.Component {
               <span className='spacer' />
               <span className='spacer' />
               <span className='spacer' />
-              <a><InlineSVG src='cross' /></a>
+              <a onClick={this._handleRemoveFromCart_.bind(this, product.id)}>
+                <InlineSVG src='cross' />
+              </a>
             </div>
           </div>
         )}
-        <FormattedNumber
-          style='currency'
-          currency='USD'
-          value={ total }
-        />
+        <div className='total'>
+          <div className='row'>
+            <FormattedMessage
+              id='CartReviewPage.total'
+            />
+            <FormattedNumber
+              style='currency'
+              currency='USD'
+              value={ total }
+            />
+          </div>
+          {products.length > 0 &&
+          <div className='row'>
+            <span className='spacer' />
+            <a className={ button }>Continuar</a>
+          </div>
+          }
+        </div>
       </div>
     );
   }

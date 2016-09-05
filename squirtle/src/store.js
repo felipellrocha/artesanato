@@ -14,8 +14,6 @@ import cart, { handlers } from 'data/cart/reducer'
 import ui from 'data/ui/reducer'
 import authentication from 'data/authentication/reducer'
 
-console.log(handlers);
-
 const reducers = combineReducers({
   products,
   profiles,

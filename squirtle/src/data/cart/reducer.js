@@ -14,6 +14,24 @@ const initialState = cache ?
   };
 
 export const handlers = {
+  REMOVE_FROM_CART: (state, action) => {
+    const {
+      productId,
+    } = action;
+
+    const product = state.products[productId];
+
+    if (!product) return state;
+
+    const newProducts = Object.assign({}, state.products)
+    const count = newProducts[productId];
+    delete newProducts[productId];
+
+    return Object.assign({}, state, {
+      products: newProducts,
+      total: state.total - count,
+    })
+  },
   DECREASE_FROM_CART: (state, action) => {
     const {
       productId,
@@ -59,7 +77,7 @@ export const handlers = {
         total: state.total + 1,
       })
     }
-  }
+  },
 }
 
 export default handleActions(handlers, initialState);

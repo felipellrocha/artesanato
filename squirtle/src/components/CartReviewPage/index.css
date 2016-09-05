@@ -15,7 +15,7 @@
       width: 200px;
       text-align: right;
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
+      font-size: 12px;
     }
 
     & > .actions {
@@ -23,6 +23,25 @@
       flex-direction: column;
       margin-left: 20px;
       justify-content: space-between;
+    }
+  }
+
+  & > .total {
+    padding: 0 20px;
+    background: #fff;
+    box-shadow: 0 -3px 0px rgba(0, 0, 0, .1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+
+    & > .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px dotted #ece9e9;
+
+      &:last-child {
+        border-bottom: 0;
+      }
     }
   }
 }
