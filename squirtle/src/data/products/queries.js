@@ -34,6 +34,8 @@ export const getSingle = (id) => `
     title
     screenshot
     description
+    priceValue
+    priceCurrency
     comments {
       edges {
         node {
@@ -52,7 +54,6 @@ export const getSingle = (id) => `
         }
       }
 		}
-    price
     seller {
       id
       pk
@@ -73,7 +74,8 @@ export const getAll = () => `
         id
         title
         screenshot
-        price
+        priceValue
+        priceCurrency
       }
     }
   }

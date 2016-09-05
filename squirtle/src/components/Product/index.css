@@ -88,3 +88,22 @@
     }
   }
 }
+
+:local(.listItem) {
+  display: flex;
+
+  & > .screenshot {
+    width: 200px;
+    height: auto;
+    box-shadow: none;
+
+    & > a img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  & > .details {
+    width: calc(100% - 315px);
+  }
+}

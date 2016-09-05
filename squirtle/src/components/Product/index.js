@@ -18,7 +18,6 @@ import { button } from 'components/App/index.css'
 class Component extends React.Component {
   static defaultProps() {
     return {
-      variant: product.COMMON,
       id: '000',
     }
   }
@@ -39,7 +38,8 @@ class Component extends React.Component {
       id,
       screenshot,
       title,
-      price,
+      priceValue,
+      priceCurrency,
       description,
 
       className,
@@ -63,12 +63,12 @@ class Component extends React.Component {
         <div className='details'>
           <div className='row'>
             <h2><Link to={ ProductLink(id) }>{ title }</Link></h2>
-            {price && !isInCart &&
+            {!isInCart &&
               <a className={ addToCartClasses } onClick={this._handleAddToCart_.bind(this)}>
                 <FormattedMessage id='Product.addToCart' />
                 <p className='price'>
-                  <span className='value'>{ price }</span>
-                  <span className='currency'>USD</span>
+                  <span className='value'>{ priceValue }</span>
+                  <span className='currency'>{ priceCurrency }</span>
                 </p>
               </a>
             }

@@ -8,7 +8,21 @@ export const isProductInCart = (state, id) => (
 )
 
 export const getProductsInCart = (state) => {
-  const products = Object.keys(state.cart.products)
+  const cart = Object.keys(state.cart.products)
+  const products = Object.keys(state.products)
 
-  return products.map(product => state.products[product])
+  if (!products.length) return undefined;
+
+  return cart.map(product => {
+    const item = state.products[product]
+
+    item.quantity = state.cart.products[product]
+
+    return item
+  })
 }
+
+export const getTotal = (products) =>
+  products && products.length ?
+    products.reduce((prev, curr) => (prev + (curr.priceValue * curr.quantity)), 0) :
+    0;

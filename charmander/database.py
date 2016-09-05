@@ -63,7 +63,8 @@ def init():
     'title': 'Vasos simples',
     'screenshot': 'images/products/vases.jpg',
     'description': "The wall fire and blood joffrey howland reed dontos hollard euron rhaenyra varys. Bael the bard king's landing the knights of summer fear cuts deeper than swords osha elia egg pyke. Catelyn the pointy end shireen greatjon the lone wolf dies but the pack survives lady. Greywind ruby ford areo hotah, jaime jory great wyk promise me ned oh my sweet summer child.",
-    'price': '2.99',
+    'price_value': 2.99,
+    'price_currency': 'USD',
 
     'seller': stannis,
   })
@@ -71,7 +72,8 @@ def init():
     'title': 'Vasos de areia',
     'screenshot': 'images/products/areias.jpg',
     'description': "Varys brandon stark and now it begins lysa lannisport wyman manderly sansa benjen bran watcher on the walls. Lemonwood aenys sandor, the north remembers gregor rhaenyra only Cat crownlands elia aemon nymeria. Margaery stormlands euron sandor ashara.\n\nStarfall astapor neck riverlands, what is dead may never die howland reed khal drogo fuck your water bring me wine jon snow bloodraven you know nothing viserys baelor vaes dothrak.",
-    'price': '2.99',
+    'price_value': 2.99,
+    'price_currency': 'USD',
 
     'seller': stannis,
   })

@@ -1,6 +1,9 @@
 import { handleActions } from 'redux-actions'
 
-import { ADD_TO_CART } from 'actions/cart'
+import {
+  ADD_TO_CART,
+  REDUCE_FROM_CART,
+} from 'actions/cart'
 
 const cache = localStorage.getItem('cache_cart');
 const initialState = cache ?
@@ -10,7 +13,25 @@ const initialState = cache ?
     total: 0,
   };
 
-export default handleActions({
+export const handlers = {
+  DECREASE_FROM_CART: (state, action) => {
+    const {
+      productId,
+    } = action;
+
+    const product = state.products[productId];
+
+    if (!product) return state;
+
+    const newProducts = Object.assign({}, state.products, {
+      [productId]: product - 1,
+    })
+
+    return Object.assign({}, state, {
+      products: newProducts,
+      total: state.total - 1,
+    })
+  },
   ADD_TO_CART: (state, action) => {
     const {
       productId,
@@ -39,4 +60,6 @@ export default handleActions({
       })
     }
   }
-}, initialState);
+}
+
+export default handleActions(handlers, initialState);

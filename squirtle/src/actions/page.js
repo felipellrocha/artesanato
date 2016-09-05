@@ -4,9 +4,29 @@ import ProductNormalizer from 'data/products/normalizers'
 import { normalize, arrayOf } from 'normalizr'
 
 import requests from 'utils/requests'
+import axios from 'axios'
 
+export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT'
 export const RECEIVE_HOME_PAGE = 'RECEIVE_HOME_PAGE'
+
+export function loadCartProducts(ids) {
+  return dispatch => {
+    const requestList = ids.map(id =>
+      requests.get('/data', {
+        params: {
+          query: getSingle(id),
+        }
+      })
+    )
+
+    axios.all(requestList).then((responses) => {
+      const products = responses.map(response => response.data.data.product);
+      const data = normalize(products, arrayOf(ProductNormalizer));
+			dispatch(receiveProducts(data));
+    });
+  }
+}
 
 export function loadSingleProduct(id) {
   return dispatch => {
@@ -26,13 +46,6 @@ export function loadSingleProduct(id) {
   }
 }
 
-export function receiveSingleProduct(data) {
-  return {
-    type: RECEIVE_SINGLE_PRODUCT,
-    data,
-  }
-}
-
 export function loadHomePage() {
   return dispatch => {
     requests.get('/data', {
@@ -44,6 +57,20 @@ export function loadHomePage() {
 			const data = normalize(unwrap, arrayOf(ProductNormalizer));
 			dispatch(receiveHomePage(data));
     });
+  }
+}
+
+export function receiveProducts(data) {
+  return {
+    type: RECEIVE_PRODUCTS,
+    data,
+  }
+}
+
+export function receiveSingleProduct(data) {
+  return {
+    type: RECEIVE_SINGLE_PRODUCT,
+    data,
   }
 }
 

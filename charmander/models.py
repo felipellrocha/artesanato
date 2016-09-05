@@ -4,6 +4,7 @@ from datetime import datetime
 from sqlalchemy import (
   Column,
   Integer,
+  Float,
   String,
   DateTime,
   ForeignKey,
@@ -32,7 +33,8 @@ class Product(Base):
   title = Column(String)
   screenshot = Column(String)
   description = Column(String)
-  price = Column(String)
+  price_value = Column(Float)
+  price_currency = Column(String)
 
   comments = relationship(Comment, uselist=True, backref=backref('product'))
   seller_id = Column(Integer, ForeignKey('artesanato_profiles.id'))

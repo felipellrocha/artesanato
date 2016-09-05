@@ -1,12 +1,10 @@
-import { ADD_TO_CART } from 'actions/cart'
-
-export const CacheCart = store => next => action => {
+export const ReducerCache = (label, reducer) => store => next => action => {
   const result = next(action)
 
-  if (action.type !== ADD_TO_CART) return result;
+  if (!reducer[action.type]) return result;
 
   const state = store.getState().cart;
-  localStorage.setItem(`cache_cart`, JSON.stringify(state));
+  localStorage.setItem(`cache_${label}`, JSON.stringify(state));
 
   return result;
 }
