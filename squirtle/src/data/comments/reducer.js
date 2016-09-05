@@ -14,7 +14,7 @@ const initialState = {
 
 export default handleActions({
   RECEIVE_SINGLE_PRODUCT: (state, action) => {
-    const { comment } = action.product.entities
+    const { comment } = action.data.entities
 
     return Object.assign({}, comment)
   },

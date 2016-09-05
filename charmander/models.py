@@ -41,6 +41,10 @@ class Product(Base):
 class Profile(Base):
   __tablename__ = 'artesanato_profiles'
 
+  ignore_keys = (
+    'password',
+  )
+
   id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
 
   first_name = Column(String)
@@ -52,3 +56,16 @@ class Profile(Base):
 
   products = relationship(Product, uselist=True, back_populates='seller')
   comments = relationship(Comment, uselist=True, backref=backref('user'))
+
+  def as_dict(self):
+    print self.__table__.columns
+    print {
+      c.name: getattr(self, c.name)
+      for c in self.__table__.columns
+      if '%s.%s' % (self.__tablename__, c) not in self.ignore_keys
+    }
+    return {
+      c.name: getattr(self, c.name)
+      for c in self.__table__.columns
+      if c.name not in self.ignore_keys
+    }

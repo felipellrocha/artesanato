@@ -7,7 +7,7 @@ import AuthForm from 'components/AuthForm'
 
 import styles from './index.css'
 
-export default class SingleArtworkPage extends React.Component {
+export default class Component extends React.Component {
   render() {
     return (
       <div className={styles.component}>
@@ -18,4 +18,4 @@ export default class SingleArtworkPage extends React.Component {
 };
 
 
-export default connect()(SingleArtworkPage)
+export default connect()(Component)

@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Artwork from 'components/Artwork'
+import Product from 'components/Product'
 import { loadHomePage } from 'actions/page'
 
 import styles from './index.css'
 
 import {
-  SingleArtworkSelector,
+  SingleProductSelector,
 } from 'data/products/selectors'
 
 class Home extends React.Component {
@@ -38,10 +38,10 @@ class Home extends React.Component {
         </div>
         <div className='market'>
           {
-            products.map((artwork, i) => {
+            products.map((product, i) => {
               return (
-                <Artwork
-                  {...artwork}
+                <Product
+                  {...product}
                   key={i}
                   className={styles.cardSpacing}
                 />
@@ -56,7 +56,7 @@ class Home extends React.Component {
 
 export default connect(state => {
   const products = state.ui.productList.map(d => {
-    return SingleArtworkSelector(state, d)
+    return SingleProductSelector(state, d)
   });
 
   return {

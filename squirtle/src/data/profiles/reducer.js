@@ -29,12 +29,12 @@ const initialState = (function () {
 
 export default handleActions({
   RECEIVE_SINGLE_PRODUCT: (state, action) => {
-    const { profile } = action.product.entities
+    const { profile } = action.data.entities
 
     return Object.assign({}, state, profile)
   },
   RECEIVE_AUTH_TOKEN: (state, action) => {
-    const { profile } = action.profile.entities
+    const { profile } = action.data.entities
 
     return Object.assign({}, state, profile)
   },

@@ -1,6 +1,6 @@
 import { getAll, getSingle } from 'data/products/queries'
 
-import ArtworkNormalizer from 'data/products/normalizers'
+import ProductNormalizer from 'data/products/normalizers'
 import { normalize, arrayOf } from 'normalizr'
 
 import requests from 'utils/requests'
@@ -20,16 +20,16 @@ export function loadSingleProduct(id) {
         comment.node.createdAt = new Date(comment.node.createdAt);
         return comment.node;
       });
-      const data = normalize(product, ArtworkNormalizer);
+      const data = normalize(product, ProductNormalizer);
 			dispatch(receiveSingleProduct(data));
     });
   }
 }
 
-export function receiveSingleProduct(product) {
+export function receiveSingleProduct(data) {
   return {
     type: RECEIVE_SINGLE_PRODUCT,
-    product
+    data,
   }
 }
 
@@ -41,15 +41,15 @@ export function loadHomePage() {
       }
     }).then((response) => {
       const unwrap = response.data.data.products.edges.map(node => node.node);
-			const data = normalize(unwrap, arrayOf(ArtworkNormalizer));
+			const data = normalize(unwrap, arrayOf(ProductNormalizer));
 			dispatch(receiveHomePage(data));
     });
   }
 }
 
-export function receiveHomePage(products) {
+export function receiveHomePage(data) {
   return {
     type: RECEIVE_HOME_PAGE,
-    products
+    data,
   }
 }

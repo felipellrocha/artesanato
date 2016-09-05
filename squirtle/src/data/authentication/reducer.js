@@ -11,7 +11,7 @@ const initialState = {
 
 export default handleActions({
   RECEIVE_AUTH_TOKEN: (state, action) => {
-    const profileId = action.profile.result
+    const profileId = action.data.result
 
     return Object.assign({}, {
       userId: profileId

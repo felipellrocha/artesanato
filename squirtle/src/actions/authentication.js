@@ -33,9 +33,9 @@ export function requestAuthToken(auth) {
   }
 }
 
-export function receiveAuthToken(profile) {
+export function receiveAuthToken(data) {
   return {
     type: RECEIVE_AUTH_TOKEN,
-    profile,
+    data,
   }
 }

@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import { CacheCart } from 'middlewares/cache'
 
-import artworks from 'data/products/reducer'
+import products from 'data/products/reducer'
 import profiles from 'data/profiles/reducer'
 import comments from 'data/comments/reducer'
 import cart from 'data/cart/reducer'
@@ -15,7 +15,7 @@ import ui from 'data/ui/reducer'
 import authentication from 'data/authentication/reducer'
 
 const reducers = combineReducers({
-  artworks,
+  products,
   profiles,
   comments,
   ui,

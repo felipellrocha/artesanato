@@ -10,7 +10,7 @@ import messages from 'messages'
 import store from './store'
 import App from 'components/App'
 import HomePage from 'components/HomePage'
-import SingleArtworkPage from 'components/SingleArtworkPage'
+import SingleProductPage from 'components/SingleProductPage'
 import LoginPage from 'components/LoginPage'
 import CartReviewPage from 'components/CartReviewPage'
 
@@ -20,7 +20,7 @@ render(
       <Router history={hashHistory}>
         <Route path='/' component={App}>
           <IndexRoute component={HomePage} />
-          <Route path='artwork/:artworkId' component={SingleArtworkPage} />
+          <Route path='product/:productId' component={SingleProductPage} />
           <Route path='login' component={LoginPage} />
           <Route path='cart-review' component={CartReviewPage} />
         </Route>

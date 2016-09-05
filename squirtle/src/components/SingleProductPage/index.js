@@ -3,14 +3,10 @@ import { connect } from 'react-redux'
 
 import classnames from 'classnames'
 
-import {
-  artwork as artworkOptions
-} from 'constants/rendering'
-
 import { FormattedMessage } from 'react-intl'
 
 import Separator from 'components/Separator'
-import Artwork from 'components/Artwork'
+import Product from 'components/Product'
 import Profile from 'components/Profile'
 import Comment from 'components/Comment'
 import { loadSingleProduct } from 'actions/page'
@@ -25,19 +21,19 @@ import {
 } from 'data/profiles/selectors'
 
 import {
-  SingleArtworkSelector,
+  SingleProductSelector,
 } from 'data/products/selectors'
 
 import styles from './index.css'
 import { button, inactiveButton } from 'components/App/index.css'
 import { largeMargin } from 'components/Profile/index.css'
-import { largeImage } from 'components/Artwork/index.css'
+import { largeImage } from 'components/Product/index.css'
 
 import {
   typeTextarea,
 } from 'actions/ui'
 
-export default class SingleArtworkPage extends React.Component {
+export default class Component extends React.Component {
   static defaultProps = {
     maxLengthComment: 500,
   }
@@ -45,13 +41,12 @@ export default class SingleArtworkPage extends React.Component {
   componentDidMount() {
     const {
       dispatch,
-      artworks,
       params: {
-        artworkId,
+        productId,
       }
     } = this.props;
     
-    dispatch(loadSingleProduct(artworkId))
+    dispatch(loadSingleProduct(productId))
   }
 
   _handleType_(event) {
@@ -67,7 +62,7 @@ export default class SingleArtworkPage extends React.Component {
 
   _handleSubmit_() {
     const {
-      artwork,
+      product,
       seller,
       dispatch,
     } = this.props;
@@ -75,20 +70,20 @@ export default class SingleArtworkPage extends React.Component {
     dispatch(submitComment(
       this.refs.comment.value,
       seller.pk,
-      artwork.pk,
+      product.pk,
     ));
   }
 
   render() {
     const {
-      artwork,
+      product,
       seller,
       comments,
       comment,
       maxLengthComment,
     } = this.props;
 
-    if (!artwork) return null;
+    if (!product) return null;
 
     const buttonClasses = classnames(
       button,
@@ -103,10 +98,10 @@ export default class SingleArtworkPage extends React.Component {
             <Profile {...seller} className={largeMargin} />
           </div>
           <div className='main'>
-            <Artwork {...artwork} className={largeImage} />
+            <Product {...product} className={largeImage} />
             {!!comments.length &&
               <div>
-                <Separator><FormattedMessage id='SingleArtworkPage.comment' /></Separator>
+                <Separator><FormattedMessage id='SingleProductPage.comment' /></Separator>
                 {comments.map(comment =>
                   <Comment {...comment} key={comment.id} />
                 )}
@@ -133,15 +128,15 @@ export default class SingleArtworkPage extends React.Component {
 
 
 export default connect((state, props) => {
-  const artwork = SingleArtworkSelector(state, props.params.artworkId);
-  const seller = SellerOfProductSelector(state, artwork);
-  const comments = CommentsOfProductSelector(state, artwork);
+  const product = SingleProductSelector(state, props.params.productId);
+  const seller = SellerOfProductSelector(state, product);
+  const comments = CommentsOfProductSelector(state, product);
   const comment = state.ui.comment;
 
   return {
-    artwork,
+    product,
     seller,
     comments,
     comment,
   }
-})(SingleArtworkPage)
+})(Component)

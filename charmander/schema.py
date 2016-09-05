@@ -11,7 +11,7 @@ from data import (
   ALGORITHM,
 )
 
-from database import db_session
+from database import session
 
 from models import (
   Comment as CommentModel,
@@ -92,7 +92,7 @@ class CreateComment(graphene.Mutation):
   @classmethod
   def mutate(cls, instance, args, info):
     print args
-    db_session.begin()
+    session.begin()
 
     new_comment = CommentModel(
       text = args.get('text'),
@@ -100,9 +100,9 @@ class CreateComment(graphene.Mutation):
       product_id = args.get('product_id'),
     )
 
-    db_session.add(new_comment)
+    session.add(new_comment)
 
-    db_session.commit()
+    session.commit()
 
     print new_comment.__dict__
     print Comment(new_comment).__dict__

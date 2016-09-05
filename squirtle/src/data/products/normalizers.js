@@ -2,11 +2,11 @@ import { normalize, Schema, arrayOf } from 'normalizr'
 import ProfileNormalizer from 'data/profiles/normalizers'
 import CommentNormalizer from 'data/comments/normalizers'
 
-const Artwork = new Schema('artwork', { idAttribute: 'id' });
+const Normalizer = new Schema('product', { idAttribute: 'id' });
 
-Artwork.define({
+Normalizer.define({
   comments: arrayOf(CommentNormalizer),
   seller: ProfileNormalizer
 })
 
-export default Artwork;
+export default Normalizer;

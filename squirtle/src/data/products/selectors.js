@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 
-export const SingleArtworkSelector = (state, id) => (
+export const SingleProductSelector = (state, id) => (
   state
-  && state.artworks
-  && state.artworks[id]
+  && state.products
+  && state.products[id]
 )

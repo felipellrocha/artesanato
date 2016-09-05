@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { Link } from 'react-router'
-import { ArtworkLink } from 'Links'
+import { ProductLink } from 'Links'
 
-import { ARTWORK } from 'constants'
+import { product } from 'constants'
 import classnames from 'classnames'
 
 import { addToCart } from 'actions/cart'
@@ -15,10 +15,10 @@ import { FormattedMessage } from 'react-intl'
 import styles from './index.css'
 import { button } from 'components/App/index.css'
 
-class Artwork extends React.Component {
+class Component extends React.Component {
   static defaultProps() {
     return {
-      variant: artwork.COMMON,
+      variant: product.COMMON,
       id: '000',
     }
   }
@@ -55,17 +55,17 @@ class Artwork extends React.Component {
       <div className={ classes }>
         {screenshot &&
           <div className='screenshot'>
-            <Link to={ ArtworkLink(id) }>
+            <Link to={ ProductLink(id) }>
               <img src={ screenshot } />
             </Link>
           </div>
         }
         <div className='details'>
           <div className='row'>
-            <h2><Link to={ ArtworkLink(id) }>{ title }</Link></h2>
+            <h2><Link to={ ProductLink(id) }>{ title }</Link></h2>
             {price && !isInCart &&
               <a className={ addToCartClasses } onClick={this._handleAddToCart_.bind(this)}>
-                <FormattedMessage id='Artwork.addToCart' />
+                <FormattedMessage id='Product.addToCart' />
                 <p className='price'>
                   <span className='value'>{ price }</span>
                   <span className='currency'>USD</span>
@@ -82,4 +82,4 @@ class Artwork extends React.Component {
 
 export default connect((state, props) => ({
   isInCart: isProductInCart(state, props.id),
-}))(Artwork)
+}))(Component)

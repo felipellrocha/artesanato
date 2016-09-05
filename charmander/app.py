@@ -4,8 +4,9 @@ from flask import Flask, jsonify, request
 from werkzeug.exceptions import abort
 from flask_graphql import GraphQLView
 
-from database import db_session
-from schema import ( schema, Profile )
+from schema import (
+  schema,
+)
 
 from datetime import datetime, timedelta
 
@@ -14,6 +15,12 @@ from data import (
   EXPIRATION,
   ALGORITHM,
 )
+
+from models import (
+  Profile,
+)
+
+from database import session
 
 import jwt
 
@@ -32,35 +39,30 @@ app.add_url_rule('/data', view_func=GraphQLView.as_view(
 def status():
   return 'Everything is ok!'
 
-"""
 @app.route('/session/create', methods=['POST'])
 def session_create():
   formUser = request.json.get('username')
   formPassword = request.json.get('password')
-  dataUser = getUserByUsername(formUser)
-  dataPassword = dataUser.get('password')
 
-  if not dataUser: abort(400)
-  if not formPassword == dataPassword: abort(400)
+  user = session.query(Profile).filter(Profile.username == formUser).one()
 
-  user = copy.copy(dataUser)
-  del user['username']
-  del user['password']
+  if not user: abort(400)
+  if not formPassword == user.password: abort(400)
 
   payload = {
-    'user_id': dataUser.get('id'),
+    'user_id': user.id,
     'exp': datetime.utcnow() + timedelta(days=EXPIRATION)
   }
   token = jwt.encode(payload, SECRET, ALGORITHM)
+
   return jsonify({
     'token': token.decode('utf-8'),
-    'user': user,
+    'user': user.as_dict(),
   })
-"""
 
 @app.teardown_appcontext
 def shutdown_session(expection=None):
-  db_session.remove()
+  session.remove()
 
 
 if __name__ == '__main__':

@@ -24,7 +24,7 @@ const initialState = {
 export default handleActions({
   RECEIVE_HOME_PAGE: (state, action) => {
     return Object.assign({}, state, {
-      productList: action.products.result,
+      productList: action.data.result,
     });
   },
   TOGGLE_ACCOUNT_DROPDOWN: (state, action) => {

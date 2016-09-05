@@ -10,7 +10,7 @@ export default flattenMessages({
   Common: {
     seller: 'Artesão',
   },
-  Artwork: {
+  Product: {
     addToCart: 'Add to cart',
   },
   Menu: {
@@ -18,7 +18,7 @@ export default flattenMessages({
     account: 'Conta',
     about: 'Sobre o site',
   },
-  SingleArtworkPage: {
+  SingleProductPage: {
 		comment: 'Comments',
 	}
 });

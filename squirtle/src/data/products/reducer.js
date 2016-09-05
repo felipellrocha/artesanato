@@ -15,22 +15,23 @@ const initialState = {
 export default handleActions({
   RECEIVE_SINGLE_PRODUCT: (state, action) => {
     const {
-      artwork,
-    } = action.product.entities
+      product,
+    } = action.data.entities
 
-    return Object.assign({}, artwork)
+    return Object.assign({}, product)
   },
   RECEIVE_HOME_PAGE: (state, action) => {
     const {
-      artwork,
-    } = action.products.entities;
+      product,
+    } = action.data.entities;
 
-    return Object.assign({}, artwork)
+    return Object.assign({}, product)
   },
   RECEIVE_COMMENT: (state, action) => {
     const {
       result: newCommentId,
     } = action.data;
+
     const {
       id: productId,
     } = action.data.entities.comment[newCommentId].product;

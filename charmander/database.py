@@ -5,13 +5,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 engine = create_engine('sqlite:///artesanato.sqlite3', convert_unicode=True)
-db_session = scoped_session(sessionmaker(
+session = scoped_session(sessionmaker(
   autocommit=True,
   autoflush=True,
   bind=engine
 ))
 Base = declarative_base()
-Base.query = db_session.query_property()
+Base.query = session.query_property()
 
 def init():
   from models import (
@@ -23,7 +23,7 @@ def init():
   Base.metadata.drop_all(bind=engine)
   Base.metadata.create_all(bind=engine)
 
-  db_session.begin()
+  session.begin()
 
   stannis = Profile(**{
     'first_name': 'Stannis',
@@ -42,8 +42,8 @@ def init():
     'password': 'ygritte4ev3r',
   })
 
-  db_session.add(stannis)
-  db_session.add(jon)
+  session.add(stannis)
+  session.add(jon)
 
   comment1 = Comment(**{
     'user': stannis,
@@ -56,8 +56,8 @@ def init():
     'created_at': datetime.strptime('2016-08-21T15:02:06', "%Y-%m-%dT%H:%M:%S"),
   })
 
-  db_session.add(comment1)
-  db_session.add(comment2)
+  session.add(comment1)
+  session.add(comment2)
 
   simples = Product(**{
     'title': 'Vasos simples',
@@ -79,7 +79,7 @@ def init():
   simples.comments.append(comment1)
   simples.comments.append(comment2)
 
-  db_session.add(simples)
-  db_session.add(sand)
+  session.add(simples)
+  session.add(sand)
 
-  db_session.commit()
+  session.commit()
