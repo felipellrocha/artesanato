@@ -37,21 +37,17 @@ export const getSingle = (id) => `
     priceValue
     priceCurrency
     comments {
-      edges {
-        node {
-          id
-          pk
-          text
-          createdAt
-          user {
-            id
-            pk
-            firstName
-            username
-            lastName
-            image
-          }    
-        }
+      id
+      pk
+      text
+      createdAt
+      user {
+        id
+        pk
+        firstName
+        username
+        lastName
+        image
       }
 		}
     seller {
@@ -69,15 +65,11 @@ export const getSingle = (id) => `
 export const getAll = () => `
 {
   products {
-    edges {
-      node {
-        id
-        title
-        screenshot
-        priceValue
-        priceCurrency
-      }
-    }
+    id
+    title
+    screenshot
+    priceValue
+    priceCurrency
   }
 }
 `

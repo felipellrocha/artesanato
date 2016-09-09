@@ -36,9 +36,9 @@ export function loadSingleProduct(id) {
       }
     }).then((response) => {
       const product = response.data.data.product;
-      product.comments = product.comments.edges.map(comment => {
-        comment.node.createdAt = new Date(comment.node.createdAt);
-        return comment.node;
+      product.comments = product.comments.map(comment => {
+        comment.createdAt = new Date(comment.createdAt);
+        return comment;
       });
       const data = normalize(product, ProductNormalizer);
 			dispatch(receiveSingleProduct(data));
@@ -53,8 +53,7 @@ export function loadHomePage() {
         query: getAll(),
       }
     }).then((response) => {
-      const unwrap = response.data.data.products.edges.map(node => node.node);
-			const data = normalize(unwrap, arrayOf(ProductNormalizer));
+			const data = normalize(response.data.data.products, arrayOf(ProductNormalizer));
 			dispatch(receiveHomePage(data));
     });
   }

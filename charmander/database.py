@@ -4,6 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+from elasticsearch import Elasticsearch
+
 engine = create_engine('sqlite:///artesanato.sqlite3', convert_unicode=True)
 session = scoped_session(sessionmaker(
   autocommit=True,
@@ -12,6 +14,8 @@ session = scoped_session(sessionmaker(
 ))
 Base = declarative_base()
 Base.query = session.query_property()
+
+es = Elasticsearch()
 
 def init():
   from models import (
@@ -59,29 +63,31 @@ def init():
   session.add(comment1)
   session.add(comment2)
 
-  simples = Product(**{
+  #simples.comments.append(comment1)
+  #simples.comments.append(comment2)
+
+  #session.add(simples)
+  #session.add(sand)
+
+  session.commit()
+
+  es.index(index='artesanato', doc_type='product', body={
     'title': 'Vasos simples',
     'screenshot': 'images/products/vases.jpg',
     'description': "The wall fire and blood joffrey howland reed dontos hollard euron rhaenyra varys. Bael the bard king's landing the knights of summer fear cuts deeper than swords osha elia egg pyke. Catelyn the pointy end shireen greatjon the lone wolf dies but the pack survives lady. Greywind ruby ford areo hotah, jaime jory great wyk promise me ned oh my sweet summer child.",
     'price_value': 2.99,
     'price_currency': 'USD',
+    'comments': [comment1.id, comment2.id],
 
-    'seller': stannis,
+    'seller': stannis.id,
   })
-  sand = Product(**{
+  es.index(index='artesanato', doc_type='product', body={
     'title': 'Vasos de areia',
     'screenshot': 'images/products/areias.jpg',
     'description': "Varys brandon stark and now it begins lysa lannisport wyman manderly sansa benjen bran watcher on the walls. Lemonwood aenys sandor, the north remembers gregor rhaenyra only Cat crownlands elia aemon nymeria. Margaery stormlands euron sandor ashara.\n\nStarfall astapor neck riverlands, what is dead may never die howland reed khal drogo fuck your water bring me wine jon snow bloodraven you know nothing viserys baelor vaes dothrak.",
     'price_value': 2.99,
     'price_currency': 'USD',
+    'comments': [],
 
-    'seller': stannis,
+    'seller': stannis.id,
   })
-
-  simples.comments.append(comment1)
-  simples.comments.append(comment2)
-
-  session.add(simples)
-  session.add(sand)
-
-  session.commit()

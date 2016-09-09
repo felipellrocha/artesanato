@@ -11,11 +11,13 @@ from data import (
   ALGORITHM,
 )
 
-from database import session
+from database import (
+  session,
+  es,
+)
 
 from models import (
   Comment as CommentModel,
-  Product as ProductModel,
   Profile as ProfileModel,
 )
 
@@ -70,14 +72,28 @@ class Comment(SQLAlchemyNode):
     model = CommentModel
 
 @schema.register
-class Product(SQLAlchemyNode):
+class Product(graphene.ObjectType):
   pk = graphene.String()
 
-  def resolve_pk(self, args, info):
-    return self._root.id
+  id = graphene.ID()
+  title = graphene.String()
+  screenshot = graphene.String()
+  description = graphene.String()
+  price_value = graphene.String()
+  price_currency = graphene.String()
+  seller = graphene.Field(Profile)
+  comments = graphene.List(Comment)
 
-  class Meta:
-    model = ProductModel
+  def resolve_pk(self, args, info):
+    return self.id
+
+  def resolve_comments(self, args, info):
+    comments = session.query(CommentModel).filter(CommentModel.id.in_(self.comments))
+    return [Comment(comment) for comment in comments]
+
+  def resolve_seller(self, args, _):
+    seller = session.query(ProfileModel).filter(ProfileModel.id == self.seller).one()
+    return Profile(seller)
 
 @schema.register
 class CreateComment(graphene.Mutation):
@@ -91,7 +107,6 @@ class CreateComment(graphene.Mutation):
 
   @classmethod
   def mutate(cls, instance, args, info):
-    print args
     session.begin()
 
     new_comment = CommentModel(
@@ -104,17 +119,39 @@ class CreateComment(graphene.Mutation):
 
     session.commit()
 
-    print new_comment.__dict__
-    print Comment(new_comment).__dict__
-
     return CreateComment(
       comment=Comment(new_comment),
       ok=True,
     )
 
 class Query(graphene.ObjectType):
-  product = relay.NodeField(Product)
-  products = SQLAlchemyConnectionField(Product)
+  products = graphene.List(Product)
+
+  product = graphene.Field(
+    Product,
+    id = graphene.String()
+  )
+
+
+  @resolve_only_args
+  def resolve_product(self, id):
+    product = es.get(index='artesanato', doc_type='product', id=id)
+    source = product['_source']
+    source['id'] = product['_id']
+    return Product(**source)
+
+  @with_context
+  def resolve_products(self, args, context, info):
+    products = es.search(index='artesanato', doc_type='product')
+    return [
+      formatProduct(product)
+      for product in products['hits']['hits']
+    ]
+
+def formatProduct(product):
+  source = product['_source']
+  source['id'] = product['_id']
+  return Product(**source)
 
 class Mutations(graphene.ObjectType):
   create_comment = graphene.Field(CreateComment)

@@ -40,6 +40,19 @@ class Product(Base):
   seller_id = Column(Integer, ForeignKey('artesanato_profiles.id'))
   seller = relationship('Profile')
 
+  def as_dict(self):
+    print self.__table__.columns
+    print {
+      c.name: getattr(self, c.name)
+      for c in self.__table__.columns
+      if '%s.%s' % (self.__tablename__, c) not in self.ignore_keys
+    }
+    return {
+      c.name: getattr(self, c.name)
+      for c in self.__table__.columns
+      if c.name not in self.ignore_keys
+    }
+
 class Profile(Base):
   __tablename__ = 'artesanato_profiles'
 
