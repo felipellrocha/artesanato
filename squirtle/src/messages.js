@@ -16,6 +16,7 @@ export default flattenMessages({
   Menu: {
     main: 'Página principal',
     account: 'Conta',
+    browse: 'Procurar',
     about: 'Sobre o site',
   },
   SingleProductPage: {
@@ -25,5 +26,8 @@ export default flattenMessages({
 	},
   CartReviewPage: {
     total: 'Total',
-  }
+  },
+  SearchPage: {
+    search: 'Procura',
+  },
 });

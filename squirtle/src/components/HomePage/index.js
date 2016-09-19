@@ -42,7 +42,7 @@ class Home extends React.Component {
               return (
                 <Product
                   {...product}
-                  key={i}
+                  key={product.id}
                   className={styles.cardSpacing}
                 />
               )

@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import {
   HomeLink,
   LoginLink,
+  SearchLink,
   CartReviewLink,
 } from 'Links'
 
@@ -50,6 +51,7 @@ class Component extends React.Component {
         <ul className='menu'>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.main' /></Link></li>
           <li><Link to={HomeLink()}><FormattedMessage id='Menu.about' /></Link></li>
+          <li><Link to={SearchLink()}><FormattedMessage id='Menu.browse' /></Link></li>
           <li>
             <Link to={CartReviewLink()}>
               <Badge content={totalItemsInCart} shouldDisplay={totalItemsInCart > 0}>

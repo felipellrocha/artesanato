@@ -20,11 +20,14 @@ from models import (
   Profile,
 )
 
-from database import session
+from database import (
+  session,
+  es,
+)
 
 import jwt
-
 import copy
+import json
 
 app = Flask(__name__)
 
@@ -38,6 +41,21 @@ app.add_url_rule('/data', view_func=GraphQLView.as_view(
 @app.route('/data/status')
 def status():
   return 'Everything is ok!'
+
+@app.route('/data/terms')
+def terms():
+  terms = es.search(index='artesanato', doc_type='product', body={
+    'size': 0,
+    'aggregations': {
+      'titles': {
+        'terms': {
+          'field': 'tags'
+        }
+      }
+    }
+  })
+
+  return json.dumps(terms['aggregations']['titles']['buckets'])
 
 @app.route('/session/create', methods=['POST'])
 def session_create():

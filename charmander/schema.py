@@ -83,6 +83,7 @@ class Product(graphene.ObjectType):
   price_currency = graphene.String()
   seller = graphene.Field(Profile)
   comments = graphene.List(Comment)
+  tags = graphene.List(graphene.String())
 
   def resolve_pk(self, args, info):
     return self.id

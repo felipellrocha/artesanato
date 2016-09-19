@@ -104,6 +104,6 @@
   }
 
   & > .details {
-    width: calc(100% - 315px);
+    width: calc(100% - 200px);
   }
 }

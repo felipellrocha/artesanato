@@ -1,0 +1,78 @@
+:local(.component) {
+  & > .banner {
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 3px 0px rgba(0, 0, 0, .1);
+
+    & > img {
+      max-width: 100%;
+    }
+
+    & > .input {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      left: 20px;
+      
+      & > a {
+        color: #fff;
+        background: #ff7575;
+        border-radius: 0 2px 2px 0;
+        padding: 12px 12px 11px 12px;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      & > input {
+        width: calc(100% - 115px);
+        font-size: 18px;
+        border: 0;
+        border-radius: 2px 0 0 2px;
+        padding: 10px;
+        font-weight: 100;
+      }
+    }
+  }
+
+  & > .market {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    & > .sidebar {
+      width: 30%;
+      background: #fff;
+      margin-right: 20px;
+      padding: 20px;
+      border-radius: 2px;
+
+      & > h2 {
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      & > .search-term {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+
+        span {
+          font-family: 'Raleway', sans-serif;
+          font-size: 12px;
+        }
+      }
+    }
+
+    & > .main {
+      width: 70%;
+      padding: 0 0 20px 20px;
+      background: #fff;
+
+      & > h1 {
+        font-family: 'Montserrat', sans-serif;
+        margin: 20px auto;
+        width: 960px;
+      }
+    }
+  }
+}

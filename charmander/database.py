@@ -26,6 +26,7 @@ def init():
 
   Base.metadata.drop_all(bind=engine)
   Base.metadata.create_all(bind=engine)
+  es.indices.delete(index='_all')
 
   session.begin()
 
@@ -63,12 +64,6 @@ def init():
   session.add(comment1)
   session.add(comment2)
 
-  #simples.comments.append(comment1)
-  #simples.comments.append(comment2)
-
-  #session.add(simples)
-  #session.add(sand)
-
   session.commit()
 
   es.index(index='artesanato', doc_type='product', body={
@@ -78,6 +73,7 @@ def init():
     'price_value': 2.99,
     'price_currency': 'USD',
     'comments': [comment1.id, comment2.id],
+    'tags': ['vase', 'recife'],
 
     'seller': stannis.id,
   })
@@ -88,6 +84,7 @@ def init():
     'price_value': 2.99,
     'price_currency': 'USD',
     'comments': [],
+    'tags': ['vase', 'caruaru'],
 
     'seller': stannis.id,
   })

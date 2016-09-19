@@ -1,6 +1,6 @@
 :local(.component) {
   & > .banner {
-    max-height: 230px;
+    height: 230px;
     overflow: hidden;
     position: relative;
     box-shadow: 0 3px 0px rgba(0, 0, 0, .1);

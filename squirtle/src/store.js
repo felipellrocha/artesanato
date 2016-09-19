@@ -13,6 +13,7 @@ import comments from 'data/comments/reducer'
 import cart, { handlers } from 'data/cart/reducer'
 import ui from 'data/ui/reducer'
 import authentication from 'data/authentication/reducer'
+import search from 'data/search/reducer'
 
 const reducers = combineReducers({
   products,
@@ -21,6 +22,7 @@ const reducers = combineReducers({
   ui,
   authentication,
   cart,
+  search,
 });
 
 let store = createStore(

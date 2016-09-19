@@ -5,6 +5,10 @@ import {
 } from 'actions/comment'
 
 import {
+  RECEIVE_AGGREGATIONS,
+} from 'actions/search'
+
+import {
   RECEIVE_HOME_PAGE,
 } from 'actions/page'
 
@@ -19,6 +23,7 @@ const initialState = {
     account: false, 
   },
   comment: '',
+  termsList: [],
 };
 
 export default handleActions({
@@ -43,5 +48,10 @@ export default handleActions({
     return Object.assign({}, state, {
       comment: '',
     })
-  }
+  },
+  RECEIVE_AGGREGATIONS: (state, action) => {
+    return Object.assign({}, state, {
+      termsList: action.data.result,
+    })
+  },
 }, initialState);
