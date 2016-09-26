@@ -1,8 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 
 import Product from 'components/Product'
 import { loadHomePage } from 'actions/page'
+
+import {
+  SearchLink,
+} from 'Links'
 
 import styles from './index.css'
 
@@ -16,6 +21,14 @@ class Home extends React.Component {
     const { dispatch } = this.props;
 
     dispatch(loadHomePage())
+  }
+
+  _handleSearch_(event) {
+    if (event.key !== 'Enter') return;
+
+    hashHistory.push(SearchLink({
+      filter: 'simples'
+    }));
   }
 
   render() {
@@ -32,7 +45,10 @@ class Home extends React.Component {
           </div>
           <img src='images/caruaru.jpg' />
           <div className='input'>
-            <input placeholder='O que voce esta procurando?' />
+            <input
+              placeholder='O que voce esta procurando?'
+              onChange={this._handleSearch_.bind(this)}
+            />
             <a className='submit'>Procurar</a>
           </div>
         </div>

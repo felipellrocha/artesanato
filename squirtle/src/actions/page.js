@@ -13,13 +13,17 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT'
 export const RECEIVE_HOME_PAGE = 'RECEIVE_HOME_PAGE'
 
-export function loadSearchPage() {
+export function loadSearchPage({ filter } = {}) {
+  const params = {
+    query: getAll(),
+  }
+
+  if (filter) params.filter = filter;
+
   return dispatch => {
     const requestList = [
       requests.get('/data', {
-        params: {
-          query: getAll(),
-        }
+        params: params,
       }), 
       requests.get('/data/terms'), 
     ];
