@@ -14,7 +14,7 @@ import Product from 'components/Product'
 import { loadSearchPage } from 'actions/page'
 
 import styles from './index.css'
-import { listItem } from 'components/Product/index.css'
+import { rowItem } from 'components/Product/index.css'
 
 import {
   SingleTermSelector,
@@ -88,7 +88,7 @@ class Component extends React.Component {
                   <Product
                     {...product}
                     key={i}
-                    className={ listItem }
+                    className={ rowItem }
                   />
                 )
               })

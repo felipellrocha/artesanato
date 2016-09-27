@@ -145,16 +145,12 @@ class Query(graphene.ObjectType):
   def resolve_products(self, args, context, info):
     filter_query = context.args.get('filter', '')
 
-    print filter_query
-
     search = {
       'index': 'artesanato',
       'doc_type': 'product',
     }
 
     if filter_query: search['q'] = filter_query
-
-    print search
 
     products = es.search(**search)
 

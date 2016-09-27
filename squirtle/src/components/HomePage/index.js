@@ -27,7 +27,7 @@ class Home extends React.Component {
     if (event.key !== 'Enter') return;
 
     hashHistory.push(SearchLink({
-      filter: 'simples'
+      filter: this.refs.searchField.value
     }));
   }
 
@@ -47,7 +47,8 @@ class Home extends React.Component {
           <div className='input'>
             <input
               placeholder='O que voce esta procurando?'
-              onChange={this._handleSearch_.bind(this)}
+              onKeyDown={this._handleSearch_.bind(this)}
+              ref='searchField'
             />
             <a className='submit'>Procurar</a>
           </div>

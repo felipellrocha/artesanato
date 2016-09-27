@@ -89,8 +89,10 @@
   }
 }
 
-:local(.listItem) {
+:local(.rowItem) {
   display: flex;
+  padding: 20px 0;
+  border-bottom: 1px dotted #ece9e9;
 
   & > .screenshot {
     width: 200px;
