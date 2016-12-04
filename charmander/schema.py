@@ -62,16 +62,6 @@ class Profile(SQLAlchemyNode):
     return None
 
 @schema.register
-class Comment(SQLAlchemyNode):
-  pk = graphene.String()
-
-  def resolve_pk(self, args, info):
-    return self._root.id
-
-  class Meta:
-    model = CommentModel
-
-@schema.register
 class Product(graphene.ObjectType):
   pk = graphene.String()
 
@@ -82,7 +72,7 @@ class Product(graphene.ObjectType):
   price_value = graphene.String()
   price_currency = graphene.String()
   seller = graphene.Field(Profile)
-  comments = graphene.List(Comment)
+  comments = graphene.List('Comment')
   tags = graphene.List(graphene.String())
 
   def resolve_pk(self, args, info):
@@ -95,6 +85,23 @@ class Product(graphene.ObjectType):
   def resolve_seller(self, args, _):
     seller = session.query(ProfileModel).filter(ProfileModel.id == self.seller).one()
     return Profile(seller)
+
+@schema.register
+class Comment(SQLAlchemyNode):
+  pk = graphene.String()
+  product = graphene.Field('Product')
+
+  def resolve_pk(self, args, info):
+    return self._root.id
+
+  def resolve_product(self, args, _):
+    product = es.get(index='artesanato', doc_type='product', id=self.product_id)
+    source = product['_source']
+    source['id'] = product['_id']
+    return Product(**source)
+
+  class Meta:
+    model = CommentModel
 
 @schema.register
 class CreateComment(graphene.Mutation):

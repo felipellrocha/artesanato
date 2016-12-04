@@ -66,7 +66,7 @@ def init():
 
   session.commit()
 
-  es.index(index='artesanato', doc_type='product', body={
+  product = es.index(index='artesanato', doc_type='product', body={
     'title': 'Vasos simples',
     'screenshot': 'images/products/vases.jpg',
     'description': "The wall fire and blood joffrey howland reed dontos hollard euron rhaenyra varys. Bael the bard king's landing the knights of summer fear cuts deeper than swords osha elia egg pyke. Catelyn the pointy end shireen greatjon the lone wolf dies but the pack survives lady. Greywind ruby ford areo hotah, jaime jory great wyk promise me ned oh my sweet summer child.",
@@ -88,3 +88,10 @@ def init():
 
     'seller': stannis.id,
   })
+
+  session.begin()
+
+  comment1.product_id = product['_id']
+  comment2.product_id = product['_id']
+
+  session.commit()

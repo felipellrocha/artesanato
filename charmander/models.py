@@ -23,7 +23,7 @@ class Comment(Base):
   text = Column(String)
   created_at = Column(DateTime, default=lambda: datetime.now())
   user_id = Column(Integer, ForeignKey('artesanato_profiles.id'))
-  product_id = Column(Integer, ForeignKey('artesanato_products.id'))
+  product_id = Column(Integer)
 
 class Product(Base):
   __tablename__ = 'artesanato_products'
@@ -36,7 +36,6 @@ class Product(Base):
   price_value = Column(Float)
   price_currency = Column(String)
 
-  comments = relationship(Comment, uselist=True, backref=backref('product'))
   seller_id = Column(Integer, ForeignKey('artesanato_profiles.id'))
   seller = relationship('Profile')
 
