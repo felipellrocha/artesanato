@@ -31,6 +31,8 @@ import json
 
 app = Flask(__name__)
 
+print schema
+
 app.add_url_rule('/data', view_func=GraphQLView.as_view(
   'data',
   schema=schema,

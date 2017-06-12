@@ -15,7 +15,7 @@ session = scoped_session(sessionmaker(
 Base = declarative_base()
 Base.query = session.query_property()
 
-es = Elasticsearch()
+es = Elasticsearch(['http://localhost:9200'])
 
 def init():
   from models import (

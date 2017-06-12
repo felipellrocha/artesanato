@@ -27,7 +27,7 @@ import styles from './index.css'
 import { listItem } from 'components/Product/index.css'
 import { button } from 'components/App/index.css'
 
-export default class Component extends React.Component {
+class Component extends React.Component {
 
   componentDidMount() {
     const {

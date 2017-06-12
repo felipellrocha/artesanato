@@ -36,7 +36,7 @@ import {
   typeTextarea,
 } from 'actions/ui'
 
-export default class Component extends React.Component {
+class Component extends React.Component {
   static defaultProps = {
     maxLengthComment: 500,
   }

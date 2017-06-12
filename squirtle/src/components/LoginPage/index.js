@@ -7,7 +7,7 @@ import AuthForm from 'components/AuthForm'
 
 import styles from './index.css'
 
-export default class Component extends React.Component {
+class Component extends React.Component {
   render() {
     return (
       <div className={styles.component}>
